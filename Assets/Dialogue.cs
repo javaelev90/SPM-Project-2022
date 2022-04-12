@@ -54,7 +54,6 @@ public class Dialogue : MonoBehaviour
         }else{
             players.Next();
         }
-
     }
     void Next(){
         if(index < numberOfLines.Length -1){
