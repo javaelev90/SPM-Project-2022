@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typ: 3
-  amount: 0
   playerToRevive: {fileID: 0}
+  amount: 0
 --- !u!135 &1605484899554014215
 SphereCollider:
   m_ObjectHideFlags: 0

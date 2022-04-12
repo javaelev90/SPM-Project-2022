@@ -5,7 +5,8 @@ using UnityEngine;
 public class Pickup : MonoBehaviour
 {
     [SerializeField] private Pickup_Typs.Pickup typ;
-    [SerializeField] public int amount;
+    [SerializeField] private GameObject playerToRevive;
+    public int amount;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,16 @@ public class Pickup : MonoBehaviour
     public Pickup_Typs.Pickup getTyp()
     {
         return typ;
+    }
+
+    public GameObject getPlayerToRevive()
+    {
+        return playerToRevive;
+    }
+
+    public void setPlayerToRevive(GameObject player)
+    {
+        playerToRevive = player;
     }
 
 }

@@ -236,6 +236,8 @@ GameObject:
   - component: {fileID: 8807152378087854346}
   - component: {fileID: 135439137284271476}
   - component: {fileID: 5325859872344005593}
+  - component: {fileID: 33687808381116054}
+  - component: {fileID: 3086714651586484913}
   m_Layer: 7
   m_Name: PlayerwWeapon
   m_TagString: Player
@@ -372,6 +374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialHealth: 10
+  reviveTestSubject: 0
 --- !u!114 &8807152378087854346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,3 +455,39 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &33687808381116054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8807152378087854580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1749f9f6eb9b9e4e8b9c9c99d42cb9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickUpDistence: 5
+  pickupLayer:
+    serializedVersion: 2
+    m_Bits: 131072
+  spaceShipLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  inventory: {fileID: 3086714651586484913}
+--- !u!114 &3086714651586484913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8807152378087854580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867696da274e36e44a1b5683174f0490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  metal: 0
+  greenGoo: 0
+  alienMeat: 0
+  hasReviveBadge: 0
