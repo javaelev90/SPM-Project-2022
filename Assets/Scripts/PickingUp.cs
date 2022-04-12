@@ -36,20 +36,28 @@ public class PickingUp : MonoBehaviourPunCallbacks
                 if (typ == Pickup_Typs.Pickup.Metal)
                 {
                     inventory.addMetal(pickup.transform.gameObject.GetComponent<Pickup>().amount);
+                    PhotonNetwork.Destroy(pickup.transform.gameObject);
                 }
                 else if (typ == Pickup_Typs.Pickup.GreenGoo)
                 {
                     inventory.addGreenGoo(pickup.transform.gameObject.GetComponent<Pickup>().amount);
+                    PhotonNetwork.Destroy(pickup.transform.gameObject);
                 }
                 else if (typ == Pickup_Typs.Pickup.AlienMeat)
                 {
                     inventory.addAlienMeat(pickup.transform.gameObject.GetComponent<Pickup>().amount);
+                    PhotonNetwork.Destroy(pickup.transform.gameObject);
                 }
                 else if(typ == Pickup_Typs.Pickup.Revive)
                 {
                     inventory.HasReviveBadge = true;
+                    PhotonNetwork.Destroy(pickup.transform.gameObject);
                 }
-                PhotonNetwork.Destroy(pickup.transform.gameObject);
+                else if (typ == Pickup_Typs.Pickup.Fire)
+                {
+                    inventory.cook();
+                }
+                
             }
             
         }

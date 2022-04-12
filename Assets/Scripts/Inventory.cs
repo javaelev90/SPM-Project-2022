@@ -7,6 +7,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] int metal;
     [SerializeField] int greenGoo;
     [SerializeField] int alienMeat;
+    [SerializeField] int cookedAlienMeat;
     [SerializeField] bool hasReviveBadge;
     public bool HasReviveBadge
     {
@@ -81,6 +82,17 @@ public class Inventory : MonoBehaviour
         if (alienMeat - amount >= 0)
         {
             alienMeat -= amount;
+            return true;
+        }
+        return false;
+    }
+
+    public bool cook()
+    {
+        if (alienMeat > 0)
+        {
+            alienMeat--;
+            cookedAlienMeat++;
             return true;
         }
         return false;

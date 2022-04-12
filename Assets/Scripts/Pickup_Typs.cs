@@ -9,6 +9,7 @@ public class Pickup_Typs : MonoBehaviour
         Metal,
         GreenGoo,
         AlienMeat,
-        Revive
+        Revive,
+        Fire
     } 
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571336, b: 0.3069219, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -482,6 +482,63 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &1316556178176531262
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1316556177768981289, guid: 2be738bdd484c45fd962894b5d80b355, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316556177768981289, guid: 2be738bdd484c45fd962894b5d80b355, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316556177768981289, guid: 2be738bdd484c45fd962894b5d80b355, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316556177768981289, guid: 2be738bdd484c45fd962894b5d80b355, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316556177768981289, guid: 2be738bdd484c45fd962894b5d80b355, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316556177768981289, guid: 2be738bdd484c45fd962894b5d80b355, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316556177768981289, guid: 2be738bdd484c45fd962894b5d80b355, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316556177768981289, guid: 2be738bdd484c45fd962894b5d80b355, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316556177768981289, guid: 2be738bdd484c45fd962894b5d80b355, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316556177768981289, guid: 2be738bdd484c45fd962894b5d80b355, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316556177768981289, guid: 2be738bdd484c45fd962894b5d80b355, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316556177768981295, guid: 2be738bdd484c45fd962894b5d80b355, type: 3}
+      propertyPath: m_Name
+      value: Fire
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2be738bdd484c45fd962894b5d80b355, type: 3}
 --- !u!114 &2333790221249136050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -600,6 +657,7 @@ MonoBehaviour:
   metal: 0
   greenGoo: 0
   alienMeat: 0
+  hasReviveBadge: 0
 --- !u!114 &6609928100648040756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -617,8 +675,11 @@ MonoBehaviour:
   pickupLayer:
     serializedVersion: 2
     m_Bits: 131072
+  spaceShipLayer:
+    serializedVersion: 2
+    m_Bits: 0
   inventory: {fileID: 0}
-  addAmount: 0
+  otherPlayer: {fileID: 0}
 --- !u!114 &6609928100648040908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -655,9 +716,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43833397f99acb94f9dca90a30792499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponRotation: {fileID: 0}
+  muzzlePoint: {fileID: 0}
+  bullet: {fileID: 0}
   skinWidth: 0.01
   groundCheckDistance: 0.1
   isFPS: 0
+  camPositionFPS: {fileID: 0}
   cameraOffsetTPS: {x: 0, y: 2, z: -5}
   cameraOffsetFPS: {x: 0, y: 0, z: 0}
   smoothFactorQuick: 0.5
@@ -705,6 +770,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3172615044747976921, guid: e91eaeefca1cf6b44a325df71e90cc48, type: 3}
+      propertyPath: sceneViewId
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5563257113643808014, guid: e91eaeefca1cf6b44a325df71e90cc48, type: 3}
       propertyPath: m_Name
       value: Green Goo
@@ -766,6 +835,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7666610669604241872, guid: 932af93578deccb4392c0c68f5c8ca0e, type: 3}
+      propertyPath: sceneViewId
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5532362713974051641, guid: 932af93578deccb4392c0c68f5c8ca0e, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -867,6 +940,10 @@ PrefabInstance:
     - target: {fileID: 5648485573748196395, guid: 8d9299097781d6a4cbbca1a773979f70, type: 3}
       propertyPath: m_Layer
       value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5759025648505165474, guid: 8d9299097781d6a4cbbca1a773979f70, type: 3}
+      propertyPath: sceneViewId
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8818683307980219159, guid: 8d9299097781d6a4cbbca1a773979f70, type: 3}
       propertyPath: m_RootOrder
