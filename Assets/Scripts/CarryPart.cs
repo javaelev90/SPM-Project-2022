@@ -49,12 +49,14 @@ public class CarryPart : MonoBehaviour
             //GetComponent<Rigidbody>().useGravity = true;
         }
 
-        // Replace with when entering range of ship
+        /*
+        // Replaced with when entering range of ship
         if (Input.GetKeyDown(KeyCode.O))
         {
             Destroy(this.gameObject);
             Debug.Log("You've collected a part for the ship");
         }
+        */
     }
 
     /*
