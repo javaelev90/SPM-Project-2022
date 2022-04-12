@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 300483653}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.11, y: 0, z: 0.17}
+  m_LocalPosition: {x: 0.27, y: 0, z: 0.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2414603379183752700}
@@ -85,7 +85,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1868708369}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.379, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0.242, z: 0.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8807152378087854344}
@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 5325859872344005593}
   m_Layer: 7
   m_Name: PlayerwWeapon
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -335,11 +335,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponRotation: {fileID: 2414603379183752675}
   muzzlePoint: {fileID: 1767822682}
-  bullet: {fileID: 6088220835467413115, guid: ba207262921559e4b90c411efa76d658, type: 3}
+  bullet: {fileID: -6395961040285132664, guid: ba207262921559e4b90c411efa76d658, type: 3}
   skinWidth: 0.01
   groundCheckDistance: 0.1
-  isFPS: 0
-  camPositionFPS: {fileID: 0}
+  isFPS: 1
+  camPositionFPS: {fileID: 1868708369}
   cameraOffsetTPS: {x: 0, y: 2, z: -6}
   cameraOffsetFPS: {x: 0, y: 0.5, z: 0.5}
   smoothFactorQuick: 0.5

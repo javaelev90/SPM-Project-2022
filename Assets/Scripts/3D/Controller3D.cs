@@ -11,7 +11,8 @@ public class Controller3D : MonoBehaviourPunCallbacks
     [Header("Weapon")]
     [SerializeField] private GameObject weaponRotation;
     [SerializeField] private GameObject muzzlePoint;
-    [SerializeField] private GameObject bullet;
+    [SerializeField] private PhotonView bullet;
+    private string pathBullet = "Prefab/Player/Bullet";
 
     [Header("Player")]
     [SerializeField] private float skinWidth = 0.5f;
@@ -103,9 +104,9 @@ public class Controller3D : MonoBehaviourPunCallbacks
         Debug.DrawRay(muzzlePoint.transform.position, weaponRotation.transform.rotation * Vector3.forward * 100f, Color.red);
         if (Input.GetMouseButtonDown(0))
         {
-            GameObject bull = PhotonNetwork.Instantiate(bullet.name, muzzlePoint.transform.position, weaponRotation.transform.rotation);
+            GameObject bull = PhotonNetwork.Instantiate(pathBullet, muzzlePoint.transform.position, weaponRotation.transform.rotation);
             Projectile projectile = bull.GetComponent<Projectile>();
-            projectile.Velocity = weaponRotation.transform.rotation * Vector3.forward * 20f;
+            projectile.Velocity = weaponRotation.transform.rotation * Vector3.forward * 100f;
             projectile.IsShot = true;
         }
     }

@@ -8,6 +8,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 {
 
     [SerializeField] private PhotonView playerPrefab;
+    private string pathPlayer = "Prefab/Player/PlayerwWeapon";
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +26,8 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("Joined a room successfully!");
-        PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
+        //PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
+        PhotonNetwork.Instantiate(pathPlayer, Vector3.zero, Quaternion.identity);
     }
 
     public override void OnDisconnected(DisconnectCause cause)
