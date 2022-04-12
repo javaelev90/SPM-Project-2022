@@ -9,6 +9,7 @@ public class HealthState : MonoBehaviourPunCallbacks
     private bool isMine;
     [Range(1, 100)]
     [SerializeField] int initialHealth = 10;
+    Vector3 startPosition;
 
     public int Health { get; private set; }
 
@@ -16,13 +17,16 @@ public class HealthState : MonoBehaviourPunCallbacks
     {
         Health = initialHealth;
         isMine = photonView.IsMine;
+        startPosition = transform.position;
     }
+
     [PunRPC]
     public void AddHealth(int health)
     {
         if (isMine)
             Health += health;
     }
+
     [PunRPC]
     public void RemoveHealth(int health)
     {
@@ -33,6 +37,7 @@ public class HealthState : MonoBehaviourPunCallbacks
         }
             
     }
+
     [PunRPC]
     public void ResetHealth()
     {
@@ -44,7 +49,20 @@ public class HealthState : MonoBehaviourPunCallbacks
     public void KillObject()
     {
         if (isMine)
+        {
             Health = 0;
+            transform.root.gameObject.SetActive(false);
+        } 
+    }
+
+    [PunRPC]
+    public void Revive()
+    {
+        if (isMine)
+        {
+            transform.root.gameObject.SetActive(true);
+            transform.position = startPosition;
+        }
     }
 
 }
