@@ -16,7 +16,7 @@ public class EnemySpawner : MonoBehaviourPunCallbacks
     string path = "Prefab/";
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        if (PhotonNetwork.IsMasterClient && Input.GetKeyDown(KeyCode.T))
         {
             StartSpawningEnemies();
         }
