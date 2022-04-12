@@ -35,21 +35,21 @@ public class AIEnemyFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        // Find all the Players 
-        GameObject[] targets = GameObject.FindGameObjectsWithTag("Player");
-        foreach (GameObject t in targets)
-        {
-            // Find the one that is closest and make it the target
-            if (Vector3.Distance(t.transform.position, gameObject.transform.position) < Vector3.Distance(targetPlayer.transform.position, gameObject.transform.position))
-            {
-                targetPlayer = t;
-            }
-        }
-
+       
         if (targetPlayer != null)
         {
-            if(Vector3.Distance(transform.position, targetPlayer.transform.position) < followRange)
+            // Find all the Players 
+            GameObject[] targets = GameObject.FindGameObjectsWithTag("Player");
+            foreach (GameObject t in targets)
+            {
+                // Find the one that is closest and make it the target
+                if (Vector3.Distance(t.transform.position, gameObject.transform.position) < Vector3.Distance(targetPlayer.transform.position, gameObject.transform.position))
+                {
+                    targetPlayer = t;
+                }
+            }
+
+            if (Vector3.Distance(transform.position, targetPlayer.transform.position) < followRange)
             {
                 // How far are we from the enemy
                 if (Vector3.Distance(transform.position, targetPlayer.transform.position) > stopDist)
