@@ -13,6 +13,15 @@ public class EnemySpawner : MonoBehaviourPunCallbacks
     [SerializeField] float delayTime = 0.5f;
     Coroutine enemySpawner;
 
+    string path = "Prefab/";
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            StartSpawningEnemies();
+        }
+    }
+
     public void StartSpawningEnemies()
     {
         enemySpawner = StartCoroutine(SpawnEnemies());
@@ -27,7 +36,7 @@ public class EnemySpawner : MonoBehaviourPunCallbacks
     {
         for (int i = 0; i < numberOfEnemies; i++)
         {
-            PhotonNetwork.InstantiateRoomObject(enemyToSpawn.name, transform.position, Quaternion.identity);
+            PhotonNetwork.InstantiateRoomObject(path + enemyToSpawn.name, transform.position, Quaternion.identity);
             yield return new WaitForSeconds(delayTime);
         }
         yield return null;
