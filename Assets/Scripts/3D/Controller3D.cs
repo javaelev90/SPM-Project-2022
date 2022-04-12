@@ -69,10 +69,13 @@ public class Controller3D : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        InputHandling();
-        PlayerRotation();
-        WeaponRotation();
-        stateMachine.UpdateStates();
+        if (isMine)
+        {
+            InputHandling();
+            PlayerRotation();
+            WeaponRotation();
+            stateMachine.UpdateStates();
+        }
     }
 
     private void InputHandling()
