@@ -4,37 +4,59 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
+    [SerializeField] private GameObject Panel;
+    [SerializeField] private float radius = 10f;
     private bool triggerActive = false;
-    public GameObject Panel;
-
-    
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            triggerActive = true;
-        }
-    }
-
-    public void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            triggerActive = false;
-        }
-    }
 
     private void Update()
     {
-        var ray = new Ray(this.transform.position, this.transform.position);
-        if (triggerActive && Input.GetKeyDown(KeyCode.Space))
+
+        Collider[] colliderHits = Physics.OverlapSphere(transform.position, radius);
+
+        foreach (Collider col in colliderHits)
         {
-            OpenUpgradePanel();
+            if (col.tag == ("Player") && Input.GetKeyDown(KeyCode.L) && Panel != null)
+            {
+                //Debug.Log("Inside");
+                OpenUpgradePanel();
+            }
+            else
+            {
+                //Debug.Log("Outside");
+            }
         }
+
+        /*
+        if (Physics.SphereCast(ray, radius, out hit, 10f))
+        {
+            if (hit.collider.tag == "Player")
+            {
+                Debug.Log("Inside");
+                OpenUpgradePanel();
+            }
+        }
+        */
+
+        /*
+        if (Physics.Raycast(ray, out hit, height))
+        {
+            
+            if (hit.collider.tag == ("Player"))
+            {
+                OpenUpgradePanel();
+            }
+        }
+        */
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 
     public void OpenUpgradePanel()
     {
+        //triggerActive = true;
         if(Panel != null)
         {
             bool isActive = Panel.activeSelf;
