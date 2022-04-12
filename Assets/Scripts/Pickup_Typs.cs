@@ -8,6 +8,7 @@ public class Pickup_Typs : MonoBehaviour
     {
         Metal,
         GreenGoo,
-        AlienMeat
+        AlienMeat,
+        Revive
     } 
 }

@@ -7,6 +7,13 @@ public class Inventory : MonoBehaviour
     [SerializeField] int metal;
     [SerializeField] int greenGoo;
     [SerializeField] int alienMeat;
+    [SerializeField] bool hasReviveBadge;
+    public bool HasReviveBadge
+    {
+        get { return hasReviveBadge; }
+        set { hasReviveBadge = value; }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

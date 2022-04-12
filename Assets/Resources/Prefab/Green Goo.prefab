@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 4279937393451823817}
   - component: {fileID: 157928660564515285}
   - component: {fileID: 2616555557843784418}
-  - component: {fileID: 2027065707}
   m_Layer: 17
   m_Name: Green Goo
   m_TagString: Untagged
@@ -110,16 +109,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typ: 1
---- !u!135 &2027065707
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5563257113643808014}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  amount: 1
