@@ -6,7 +6,6 @@ public class Pickup : MonoBehaviour
 {
     [SerializeField] private Pickup_Typs.Pickup typ;
     [SerializeField] public int amount;
-    [SerializeField] private GameObject playerToRevive;
 
     // Start is called before the first frame update
     void Start()

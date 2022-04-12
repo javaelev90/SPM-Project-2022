@@ -10,6 +10,7 @@ public class PickingUp : MonoBehaviourPunCallbacks
     [SerializeField] private LayerMask pickupLayer;
     [SerializeField] private LayerMask spaceShipLayer;
     [SerializeField] private Inventory inventory;
+    [SerializeField] private GameObject otherPlayer;
 
     private RaycastHit pickup;
 
