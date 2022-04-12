@@ -6,8 +6,9 @@ using UnityEngine;
 public class LightingManager : MonoBehaviour
 {
     [SerializeField] private Light DirectionalLight;
+    [SerializeField] private Light MoonLight;
     [SerializeField] private LightingPreset Preset;
-    [SerializeField, Range(0, 24)] private float TimeOfDay;
+    [SerializeField, Range(0, 150)] private float TimeOfDay;
 
 
     private void Update()
@@ -20,12 +21,20 @@ public class LightingManager : MonoBehaviour
         if (Application.isPlaying)
         {
             TimeOfDay += Time.deltaTime;
-            TimeOfDay %= 24;
-            UpdateLighting(TimeOfDay / 24f);
+            TimeOfDay %= 150f;
+            UpdateLighting(TimeOfDay / 150f);
+            if (TimeOfDay > 35f && TimeOfDay < 115f)
+            {
+                MoonLight.gameObject.SetActive(false);
+            }
+            else
+            {
+                MoonLight.gameObject.SetActive(true);
+            }
         }
         else
         {
-            UpdateLighting(TimeOfDay / 24f);
+            UpdateLighting(TimeOfDay / 150f);
         }
 
 
