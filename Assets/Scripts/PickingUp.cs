@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class PickingUp : MonoBehaviour
+public class PickingUp : MonoBehaviourPunCallbacks
 {
     [SerializeField] private Transform camera;
     [SerializeField] private float pickUpDistence = 2;
@@ -11,6 +12,7 @@ public class PickingUp : MonoBehaviour
     [SerializeField] private Inventory inventory;
 
     private RaycastHit pickup;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +48,7 @@ public class PickingUp : MonoBehaviour
                 {
                     inventory.HasReviveBadge = true;
                 }
-                Destroy(pickup.transform.gameObject);
+                PhotonNetwork.Destroy(pickup.transform.gameObject);
             }
             
         }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4279937393451823817}
   - component: {fileID: 157928660564515285}
   - component: {fileID: 2616555557843784418}
+  - component: {fileID: 3172615044747976921}
   m_Layer: 17
   m_Name: Green Goo
   m_TagString: Untagged
@@ -110,3 +111,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typ: 1
   amount: 1
+  playerToRevive: {fileID: 0}
+--- !u!114 &3172615044747976921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5563257113643808014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
