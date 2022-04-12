@@ -74,6 +74,7 @@ public class Controller3D : MonoBehaviourPunCallbacks
 
         mainCam = Camera.main;
         isMine = photonView.IsMine;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
 

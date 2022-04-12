@@ -5,19 +5,19 @@ using Photon.Pun;
 
 public class PickingUp : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private Transform camera;
+    private Transform camera;
     [SerializeField] private float pickUpDistence = 2;
     [SerializeField] private LayerMask pickupLayer;
     [SerializeField] private LayerMask spaceShipLayer;
     [SerializeField] private Inventory inventory;
-    [SerializeField] private GameObject otherPlayer;
+    private GameObject otherPlayer;
 
     private RaycastHit pickup;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        camera = GameObject.Find("Main Camera").transform;
     }
 
     // Update is called once per frame
@@ -36,20 +36,29 @@ public class PickingUp : MonoBehaviourPunCallbacks
                 if (typ == Pickup_Typs.Pickup.Metal)
                 {
                     inventory.addMetal(pickup.transform.gameObject.GetComponent<Pickup>().amount);
+                    PhotonNetwork.Destroy(pickup.transform.gameObject);
                 }
                 else if (typ == Pickup_Typs.Pickup.GreenGoo)
                 {
                     inventory.addGreenGoo(pickup.transform.gameObject.GetComponent<Pickup>().amount);
+                    PhotonNetwork.Destroy(pickup.transform.gameObject);
                 }
                 else if (typ == Pickup_Typs.Pickup.AlienMeat)
                 {
                     inventory.addAlienMeat(pickup.transform.gameObject.GetComponent<Pickup>().amount);
+                    PhotonNetwork.Destroy(pickup.transform.gameObject);
                 }
                 else if(typ == Pickup_Typs.Pickup.Revive)
                 {
                     inventory.HasReviveBadge = true;
+                    otherPlayer = pickup.transform.gameObject.GetComponent<Pickup>().getPlayerToRevive();
+                    PhotonNetwork.Destroy(pickup.transform.gameObject);
                 }
-                PhotonNetwork.Destroy(pickup.transform.gameObject);
+                else if(typ == Pickup_Typs.Pickup.Fire)
+                {
+                    inventory.cook();
+                }
+                
             }
             
         }
@@ -64,9 +73,8 @@ public class PickingUp : MonoBehaviourPunCallbacks
             {
                 if (inventory.HasReviveBadge)
                 {
-                    Debug.Log("Player respawned");
                     inventory.HasReviveBadge = false;
-                    //TO-DO Code to respawn player
+                    otherPlayer.GetComponent<HealthState>().Revive();
                 }
             }
         }
