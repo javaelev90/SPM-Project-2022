@@ -15,13 +15,16 @@ public class AIEnemyFollow : MonoBehaviourPunCallbacks
     [SerializeField] float retreatDist; // Distance when the enemy should back away from player
     [SerializeField] float followRange; // How far away does the player have to be fot the enemy to follow
 
+    [SerializeField] bool targetShip;
+    private GameObject targetPlayer;
+    private GameObject shipTarget;
 
-    private GameObject targetPlayer; 
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(Wait(5));
         //Wait(5);
+        shipTarget = GameObject.FindGameObjectWithTag("Ship");
     }
 
     // Wait for player to spawn
@@ -37,7 +40,24 @@ public class AIEnemyFollow : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-       
+        if (targetShip)
+        {
+            MoveToShip();
+        } 
+        else
+        {
+            FollowPlayer();
+        }
+        
+    }
+
+    private void MoveToShip()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, movementSpeed * Time.deltaTime);
+    }
+
+    private void FollowPlayer()
+    {
         if (targetPlayer != null)
         {
             // Find all the Players 
@@ -73,7 +93,7 @@ public class AIEnemyFollow : MonoBehaviourPunCallbacks
 
                 }
             }
-                    
+
         }
     }
 

@@ -153,6 +153,7 @@ public class Controller3D : MonoBehaviourPunCallbacks
                     turretObject.transform.position = turretPos.position;
                     turretObject.GetComponent<Turret>().IsPlaced = true;
                     turretCount++;
+                    canPutDownTurret = false;
                 }
             }
         }
