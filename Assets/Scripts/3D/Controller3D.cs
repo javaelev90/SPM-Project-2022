@@ -12,6 +12,7 @@ public class Controller3D : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject weaponRotation;
     [SerializeField] private GameObject muzzlePoint;
     [SerializeField] private PhotonView bullet;
+    [SerializeField] private float bulletSpeed;
     private string pathBullet = "Prefab/Player/Bullet";
 
     [Header("Player")]
@@ -53,6 +54,16 @@ public class Controller3D : MonoBehaviourPunCallbacks
     private PhysicsBody body;
     public PhysicsBody Body => body;
 
+    [Header("Turrets")]
+    [SerializeField] private PhotonView turret;
+    [SerializeField] private Transform turretPos;
+    [SerializeField] private int maxTurretToSpawn = 3;
+    [SerializeField] private int turretCount;
+    [SerializeField] private Vector3 turretOffset;
+    private GameObject turretObject;
+    private bool canPutDownTurret;
+    private string pathTurret = "Prefab/Player/TurretAssembly";
+
     private void Awake()
     {
         stateMachine = new StateMachine(states, this);
@@ -80,6 +91,7 @@ public class Controller3D : MonoBehaviourPunCallbacks
 
     private void InputHandling()
     {
+        groundHit = IsGrounded();
         if (isMine)
         {
             input = Vector3.right * Input.GetAxisRaw("Horizontal") + Vector3.forward * Input.GetAxisRaw("Vertical");
@@ -104,13 +116,44 @@ public class Controller3D : MonoBehaviourPunCallbacks
     private void WeaponRotation()
     {
         weaponRotation.transform.rotation = Quaternion.Euler(cameraRotation.x, cameraRotation.y, 0f);
+        Physics.Raycast(muzzlePoint.transform.position, weaponRotation.transform.rotation * Vector3.forward * 10f, out RaycastHit hit, obstacleLayer);
         Debug.DrawRay(muzzlePoint.transform.position, weaponRotation.transform.rotation * Vector3.forward * 100f, Color.red);
-        if (Input.GetMouseButtonDown(0))
+
+        if (!canPutDownTurret)
         {
-            GameObject bull = PhotonNetwork.Instantiate(pathBullet, muzzlePoint.transform.position, weaponRotation.transform.rotation);
-            Projectile projectile = bull.GetComponent<Projectile>();
-            projectile.Velocity = weaponRotation.transform.rotation * Vector3.forward * 100f;
-            projectile.IsShot = true;
+            if (Input.GetMouseButtonDown(0))
+            {
+                GameObject bull = PhotonNetwork.Instantiate(pathBullet, muzzlePoint.transform.position, weaponRotation.transform.rotation);
+                Projectile projectile = bull.GetComponent<Projectile>();
+                projectile.Velocity = weaponRotation.transform.rotation * Vector3.forward * bulletSpeed;
+                projectile.IsShot = true;
+            }
+        }
+
+        if (turretCount < maxTurretToSpawn)
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                canPutDownTurret = true;
+                turretObject = PhotonNetwork.Instantiate(pathTurret, turretPos.position, Quaternion.identity);
+            }
+
+            if (canPutDownTurret && turretObject != null && Input.GetMouseButton(1))
+            {
+                turretObject.transform.position = turretPos.position;
+                turretObject.transform.rotation = Quaternion.FromToRotation(turretObject.transform.up, Vector3.up) * turretObject.transform.rotation;
+            }
+
+            if (canPutDownTurret && Input.GetMouseButtonUp(1))
+            {
+                if (hit.collider != null)
+                {
+                    turretObject.transform.rotation = Quaternion.FromToRotation(turretObject.transform.up, Vector3.up) * turretObject.transform.rotation;
+                    turretObject.transform.position = turretPos.position;
+                    turretObject.GetComponent<Turret>().IsPlaced = true;
+                    turretCount++;
+                }
+            }
         }
     }
 

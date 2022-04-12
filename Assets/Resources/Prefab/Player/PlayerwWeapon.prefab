@@ -256,6 +256,7 @@ Transform:
   m_Children:
   - {fileID: 300483654}
   - {fileID: 1868708370}
+  - {fileID: 8773544538539746374}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -337,6 +338,7 @@ MonoBehaviour:
   weaponRotation: {fileID: 2414603379183752675}
   muzzlePoint: {fileID: 1767822682}
   bullet: {fileID: -6395961040285132664, guid: ba207262921559e4b90c411efa76d658, type: 3}
+  bulletSpeed: 0
   skinWidth: 0.01
   groundCheckDistance: 0.1
   isFPS: 1
@@ -359,6 +361,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 47252abbc27c0fa4aa9ca165dfa25a57, type: 2}
   - {fileID: 11400000, guid: d7ab4444ed09af64faff96bdbf7451bd, type: 2}
   - {fileID: 11400000, guid: f6609b2bd3dacc8449a4615594518fe2, type: 2}
+  turret: {fileID: 5877100932128176889, guid: 39b977ae57182604d8aad69cebcf41be, type: 3}
+  turretPos: {fileID: 8773544538539746374}
+  maxTurretToSpawn: 3
+  turretCount: 0
+  turretOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &5370410197791854324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,3 +459,33 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!1 &8936168961814027537
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8773544538539746374}
+  m_Layer: 7
+  m_Name: turretPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8773544538539746374
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8936168961814027537}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.986, z: 2.473}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8807152378087854344}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
