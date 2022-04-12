@@ -10,6 +10,7 @@ public class HealthState : MonoBehaviourPunCallbacks
     [Range(1, 100)]
     [SerializeField] int initialHealth = 10;
     Vector3 startPosition;
+    [SerializeField] private bool reviveTestSubject;
 
     public int Health { get; private set; }
 
@@ -50,8 +51,10 @@ public class HealthState : MonoBehaviourPunCallbacks
     {
         if (isMine)
         {
+            GameObject badge = PhotonNetwork.Instantiate("Prefab/ReviveBadge", transform.position, Quaternion.identity);
             Health = 0;
             transform.root.gameObject.SetActive(false);
+            badge.GetComponent<Pickup>().setPlayerToRevive(gameObject);
         } 
     }
 
@@ -62,6 +65,15 @@ public class HealthState : MonoBehaviourPunCallbacks
         {
             transform.root.gameObject.SetActive(true);
             transform.position = startPosition;
+        }
+    }
+
+    //-- TEMP FÖR TEST -- 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<Projectile>())
+        {
+            KillObject();
         }
     }
 
