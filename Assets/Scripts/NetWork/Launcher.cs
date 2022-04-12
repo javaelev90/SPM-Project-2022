@@ -17,8 +17,9 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public override void OnConnectedToMaster()
     {
+        RoomOptions roomOptions = new RoomOptions();
         print("Connected");
-        PhotonNetwork.JoinRandomOrCreateRoom();
+        PhotonNetwork.JoinOrCreateRoom("Room1", roomOptions, null, null);
     }
 
     public override void OnJoinedRoom()
