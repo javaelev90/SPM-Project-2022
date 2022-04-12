@@ -8,12 +8,18 @@ public class Controller3D : MonoBehaviourPunCallbacks
     [Header("Multiplayer")]
     private bool isMine;
 
+    [Header("Weapon")]
+    [SerializeField] private GameObject weaponRotation;
+    [SerializeField] private GameObject muzzlePoint;
+    [SerializeField] private GameObject bullet;
+
     [Header("Player")]
     [SerializeField] private float skinWidth = 0.5f;
     [SerializeField] private float groundCheckDistance;
 
     [Header("Camera settings")]
     [SerializeField] private bool isFPS;
+    [SerializeField] private GameObject camPositionFPS;
     [SerializeField] Vector3 cameraOffsetTPS;
     [SerializeField] Vector3 cameraOffsetFPS;
     [SerializeField] float smoothFactorQuick = 0.23f;
@@ -26,9 +32,9 @@ public class Controller3D : MonoBehaviourPunCallbacks
     private Vector3 offset;
 
     [Header("Physics")]
-    private CapsuleCollider capsuleCollider;
     [SerializeField] private LayerMask obstacleLayer;
     [SerializeField] RaycastHit groundHit;
+    private CapsuleCollider capsuleCollider;
     private Vector3 upperPoint;
     private Vector3 lowerPoint;
 
@@ -45,11 +51,6 @@ public class Controller3D : MonoBehaviourPunCallbacks
     [Header("PhysicsBody")]
     private PhysicsBody body;
     public PhysicsBody Body => body;
-
-    private void OnEnable()
-    {
-        //cameraOffsetFPS = mainCam.transform.localPosition;
-    }
 
     private void Awake()
     {
@@ -68,6 +69,8 @@ public class Controller3D : MonoBehaviourPunCallbacks
     void Update()
     {
         InputHandling();
+        PlayerRotation();
+        WeaponRotation();
         stateMachine.UpdateStates();
     }
 
@@ -89,13 +92,31 @@ public class Controller3D : MonoBehaviourPunCallbacks
         }
     }
 
+    private void PlayerRotation()
+    {
+        transform.rotation = Quaternion.Euler(transform.rotation.x, cameraRotation.y, transform.rotation.z);
+    }
+
+    private void WeaponRotation()
+    {
+        weaponRotation.transform.rotation = Quaternion.Euler(cameraRotation.x, cameraRotation.y, 0f);
+        Debug.DrawRay(muzzlePoint.transform.position, weaponRotation.transform.rotation * Vector3.forward * 100f, Color.red);
+        if (Input.GetMouseButtonDown(0))
+        {
+            GameObject bull = PhotonNetwork.Instantiate(bullet.name, muzzlePoint.transform.position, weaponRotation.transform.rotation);
+            Projectile projectile = bull.GetComponent<Projectile>();
+            projectile.Velocity = weaponRotation.transform.rotation * Vector3.forward * 20f;
+            projectile.IsShot = true;
+        }
+    }
+
     private void UpdateCamera()
     {
         mainCam.transform.rotation = Quaternion.Euler(cameraRotation.x, cameraRotation.y, 0.0f);
 
         if (isFPS)
         {
-            mainCam.transform.position = transform.position +  cameraOffsetFPS;
+            mainCam.transform.position = camPositionFPS.transform.position;
         }
         else
         {
