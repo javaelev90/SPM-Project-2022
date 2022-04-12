@@ -13,7 +13,7 @@ public class AIEnemyFollow : MonoBehaviour
     [SerializeField] float stopDist; // Distance from player where it stops
     [SerializeField] float retreatDist; // Distance when the enemy should back away from player
 
-    private Transform player; 
+    private GameObject targetPlayer; 
     // Start is called before the first frame update
     void Start()
     {
@@ -23,10 +23,10 @@ public class AIEnemyFollow : MonoBehaviour
 
     // Wait for player to spawn
      IEnumerator Wait(float sec)
-    { while (player == null)
+    { while (targetPlayer == null)
         {
             yield return new WaitForSeconds(sec);
-            player = GameObject.FindGameObjectWithTag("Player").transform;
+            targetPlayer = GameObject.FindGameObjectWithTag("Player");
         }
         
     }
@@ -34,40 +34,42 @@ public class AIEnemyFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Check if player exists in world
-        if (player != null)
+
+        // Find all the Players 
+        GameObject[] targets = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject t in targets)
+        {
+            // Find the one that is closest and make it the target
+            if (Vector3.Distance(t.transform.position, gameObject.transform.position) < Vector3.Distance(targetPlayer.transform.position, gameObject.transform.position))
+            {
+                targetPlayer = t;
+            }
+        }
+
+        if (targetPlayer != null)
         {
             //player = GameObject.FindGameObjectWithTag("Player").transform;
             // How far are we from the enemy
-            if (Vector3.Distance(transform.position, player.transform.position) > stopDist)
+            if (Vector3.Distance(transform.position, targetPlayer.transform.position) > stopDist)
             {
                 // move twoards player
-                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, movementSpeed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, movementSpeed * Time.deltaTime);
             }
             // Is enemy near enogh to stop mving twoards player
-            else if (Vector3.Distance(transform.position, player.transform.position) < stopDist && Vector3.Distance(transform.position, player.transform.position) > retreatDist)
+            else if (Vector3.Distance(transform.position, targetPlayer.transform.position) < stopDist && Vector3.Distance(transform.position, targetPlayer.transform.position) > retreatDist)
             {
                 // Stop moving
                 transform.position = this.transform.position;
             }
             // If the enemy is to close
-            else if (Vector3.Distance(transform.position, player.transform.position) < retreatDist)
+            else if (Vector3.Distance(transform.position, targetPlayer.transform.position) < retreatDist)
             {
                 // Back away
-                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, -movementSpeed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, -movementSpeed * Time.deltaTime);
 
             }
-            /*
-             // Solution with NavMesh
-            if (enemyNav.isOnNavMesh == false)
-            {
-                enemyNav.Warp(player.position);
-            }
-
-            enemyNav.SetDestination(player.position);
-            */
         }
-
+            
 
     }
 }
