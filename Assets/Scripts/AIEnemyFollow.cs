@@ -12,44 +12,68 @@ public class AIEnemyFollow : MonoBehaviour
     [SerializeField] float movementSpeed;
     [SerializeField] float stopDist; // Distance from player where it stops
     [SerializeField] float retreatDist; // Distance when the enemy should back away from player
+    [SerializeField] float followRange; // How far away does the player have to be fot the enemy to follow
 
-    [SerializeField] GameObject player; 
+    private GameObject targetPlayer; 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
+        StartCoroutine(Wait(5));
+        //Wait(5);
+    }
+
+    // Wait for player to spawn
+     IEnumerator Wait(float sec)
+    { while (targetPlayer == null)
+        {
+            yield return new WaitForSeconds(sec);
+            targetPlayer = GameObject.FindGameObjectWithTag("Player");
+        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        // How far are we from the enemy
-        if (Vector3.Distance(transform.position, player.transform.position) > stopDist)
+       
+        if (targetPlayer != null)
         {
-            // move twoards player
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, movementSpeed * Time.deltaTime);
-        }
-        // Is enemy near enogh to stop mving twoards player
-        else if (Vector3.Distance(transform.position, player.transform.position) < stopDist && Vector3.Distance(transform.position, player.transform.position) > retreatDist)
-        {
-            // Stop moving
-            transform.position = this.transform.position;
-        }
-        // If the enemy is to close
-        else if(Vector3.Distance(transform.position, player.transform.position) < retreatDist)
-        {
-            // Back away
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, -movementSpeed * Time.deltaTime);
+            // Find all the Players 
+            GameObject[] targets = GameObject.FindGameObjectsWithTag("Player");
+            foreach (GameObject t in targets)
+            {
+                // Find the one that is closest and make it the target
+                if (Vector3.Distance(t.transform.position, gameObject.transform.position) < Vector3.Distance(targetPlayer.transform.position, gameObject.transform.position))
+                {
+                    targetPlayer = t;
+                }
+            }
 
-        }
-        /*
-         // Solution with NavMesh
-        if (enemyNav.isOnNavMesh == false)
-        {
-            enemyNav.Warp(player.position);
-        }
+            if (Vector3.Distance(transform.position, targetPlayer.transform.position) < followRange)
+            {
+                // How far are we from the enemy
+                if (Vector3.Distance(transform.position, targetPlayer.transform.position) > stopDist)
+                {
+                    // move twoards player
+                    transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, movementSpeed * Time.deltaTime);
+                }
+                // Is enemy near enogh to stop moving twoards player
+                else if (Vector3.Distance(transform.position, targetPlayer.transform.position) < stopDist && Vector3.Distance(transform.position, targetPlayer.transform.position) > retreatDist)
+                {
+                    // Stop moving
+                    transform.position = this.transform.position;
+                }
+                // If the enemy is to close
+                else if (Vector3.Distance(transform.position, targetPlayer.transform.position) < retreatDist)
+                {
+                    // Back away
+                    transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, -movementSpeed * Time.deltaTime);
 
-        enemyNav.SetDestination(player.position);
-        */
+                }
+            }
+                    
+        }
+            
+
     }
 }
