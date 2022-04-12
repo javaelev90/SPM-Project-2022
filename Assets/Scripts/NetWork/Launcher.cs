@@ -6,7 +6,7 @@ using Photon.Realtime;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
-
+    [SerializeField] Transform spawnPosition;
     [SerializeField] private PhotonView playerPrefab;
     private string pathPlayer = "Prefab/Player/PlayerwWeapon";
     // Start is called before the first frame update
@@ -27,7 +27,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         Debug.Log("Joined a room successfully!");
         //PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
-        PhotonNetwork.Instantiate(pathPlayer, Vector3.zero, Quaternion.identity);
+        PhotonNetwork.Instantiate(pathPlayer, spawnPosition.position, Quaternion.identity);
     }
 
     public override void OnDisconnected(DisconnectCause cause)

@@ -53,7 +53,7 @@ public class AIEnemyFollow : MonoBehaviourPunCallbacks
 
     private void MoveToShip()
     {
-        transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, movementSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, shipTarget.transform.position, movementSpeed * Time.deltaTime);
     }
 
     private void FollowPlayer()

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1423220201276715716}
   - component: {fileID: 1423220201276715723}
   - component: {fileID: 1423220201276715722}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TurretBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 1423220201826304619}
   - component: {fileID: 1423220201826304622}
   - component: {fileID: 1423220201826304617}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 1423220202128397278}
   - component: {fileID: 1423220202128397276}
   - component: {fileID: 1423220202128397277}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 1423220202970753782}
   - component: {fileID: 1423220202970753781}
   - component: {fileID: 1423220202970753780}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,7 +383,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1423220203158670640}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MuzzlePoint
   m_TagString: Untagged
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
