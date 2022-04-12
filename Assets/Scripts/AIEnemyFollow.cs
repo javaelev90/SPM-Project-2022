@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Photon.Pun;
 
 
-public class AIEnemyFollow : MonoBehaviour
+public class AIEnemyFollow : MonoBehaviourPunCallbacks
 {
     // public NavMeshAgent enemyNav;
     // public Transform player;
@@ -13,6 +14,7 @@ public class AIEnemyFollow : MonoBehaviour
     [SerializeField] float stopDist; // Distance from player where it stops
     [SerializeField] float retreatDist; // Distance when the enemy should back away from player
     [SerializeField] float followRange; // How far away does the player have to be fot the enemy to follow
+
 
     private GameObject targetPlayer; 
     // Start is called before the first frame update
@@ -73,7 +75,22 @@ public class AIEnemyFollow : MonoBehaviour
             }
                     
         }
-            
-
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.GetComponent<Projectile>())
+        {
+            PhotonNetwork.Destroy(gameObject);
+        }
+    }
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    Debug.Log("colliding witha" + collision.gameObject.name);
+    //    if (collision.gameObject.GetComponent<Projectile>())
+    //    {
+    //        PhotonNetwork.Destroy(gameObject);
+    //    }
+    //}
 }

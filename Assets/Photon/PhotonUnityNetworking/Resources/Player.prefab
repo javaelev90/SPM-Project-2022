@@ -112,9 +112,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43833397f99acb94f9dca90a30792499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponRotation: {fileID: 0}
+  muzzlePoint: {fileID: 0}
+  bullet: {fileID: 0}
   skinWidth: 0.01
   groundCheckDistance: 0.1
   isFPS: 0
+  camPositionFPS: {fileID: 0}
   cameraOffsetTPS: {x: 0, y: 2, z: -5}
   cameraOffsetFPS: {x: 0, y: 0, z: 0}
   smoothFactorQuick: 0.5
