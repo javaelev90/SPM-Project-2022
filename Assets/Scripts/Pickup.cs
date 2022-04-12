@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class Pickup : MonoBehaviour
+public class Pickup : MonoBehaviourPunCallbacks
 {
     [SerializeField] private Pickup_Typs.Pickup typ;
     [SerializeField] private GameObject playerToRevive;
