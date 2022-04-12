@@ -48,7 +48,7 @@ public class Controller3D : MonoBehaviourPunCallbacks
 
     private void OnEnable()
     {
-        cameraOffsetFPS = mainCam.transform.localPosition;
+        //cameraOffsetFPS = mainCam.transform.localPosition;
     }
 
     private void Awake()
@@ -95,7 +95,7 @@ public class Controller3D : MonoBehaviourPunCallbacks
 
         if (isFPS)
         {
-            mainCam.transform.localPosition = cameraOffsetFPS;
+            mainCam.transform.position = transform.position +  cameraOffsetFPS;
         }
         else
         {
