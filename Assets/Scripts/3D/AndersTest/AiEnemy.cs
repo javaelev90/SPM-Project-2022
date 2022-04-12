@@ -33,4 +33,9 @@ public class AiEnemy : MonoBehaviourPunCallbacks
         }
         transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * movementSpeed);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Is Colliding with player id: " + other.gameObject.GetInstanceID());
+    }
 }

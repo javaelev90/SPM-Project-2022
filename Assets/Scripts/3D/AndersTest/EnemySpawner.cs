@@ -5,20 +5,32 @@ using Photon.Pun;
 
 public class EnemySpawner : MonoBehaviourPunCallbacks
 {
-    // Start is called before the first frame update
-    void Start()
+
+    [SerializeField] GameObject enemyToSpawn;
+    [Range(1, 100)]
+    [SerializeField] int numberOfEnemies;
+    [Tooltip("Delay between enemy spawns in seconds")]
+    [SerializeField] float delayTime = 0.5f;
+    Coroutine enemySpawner;
+
+    public void StartSpawningEnemies()
     {
+        enemySpawner = StartCoroutine(SpawnEnemies());
     }
 
-    public override void OnJoinedRoom()
+    public void StopSpawningEnemies()
     {
-        Debug.Log("Joined a room successfully!");
-        PhotonNetwork.InstantiateRoomObject("NetworkAI", Vector3.zero, Quaternion.identity);
+        if (enemySpawner != null) StopCoroutine(enemySpawner);
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator SpawnEnemies()
     {
-        
+        for (int i = 0; i < numberOfEnemies; i++)
+        {
+            PhotonNetwork.InstantiateRoomObject(enemyToSpawn.name, transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(delayTime);
+        }
+        yield return null;
     }
+
 }
