@@ -79,18 +79,22 @@ public class AIEnemyFollow : MonoBehaviourPunCallbacks
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.GetComponent<Projectile>())
+        if (other.gameObject.GetComponent<Projectile>())
         {
             PhotonNetwork.Destroy(gameObject);
         }
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    Debug.Log("colliding witha" + collision.gameObject.name);
-    //    if (collision.gameObject.GetComponent<Projectile>())
-    //    {
-    //        PhotonNetwork.Destroy(gameObject);
-    //    }
-    //}
+    private void OnCollisionEnter(Collision collision)
+    {
+        //Debug.Log("colliding witha" + collision.gameObject.name);
+        //if (collision.gameObject.GetComponent<Projectile>())
+        //{
+        //    PhotonNetwork.Destroy(gameObject);
+        //}
+        if (collision.gameObject.GetComponent<HealthState>())
+        {
+            collision.gameObject.GetComponent<PhotonView>().RPC("RemoveHealth", RpcTarget.All, 1);
+        }
+    }
 }
