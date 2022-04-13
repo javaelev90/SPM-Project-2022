@@ -61,7 +61,7 @@ public class PickingUp : MonoBehaviourPunCallbacks
                         otherPlayer = pickup.transform.gameObject.GetComponent<Pickup>().getPlayerToRevive();
                         //PhotonNetwork.Destroy(pickup.transform.gameObject);
                         //photonView.RPC("ObjectDestory", RpcTarget.All, pickup.transform.gameObject);
-                        pickup.transform.gameObject.GetComponent<PhotonView>().RPC("ObjectDestory", RpcTarget.All);
+                        //pickup.transform.gameObject.GetComponent<PhotonView>().RPC("ObjectDestory", RpcTarget.All);
                     }
                     else if (typ == Pickup_Typs.Pickup.Fire)
                     {
