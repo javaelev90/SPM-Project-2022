@@ -9,6 +9,7 @@ public class CarryPart : MonoBehaviour
     /// </summary>
     [SerializeField] private Transform destination;
     private Transform player;
+    [SerializeField] private float radius = 3f;
 
     void Start()
     {
@@ -32,22 +33,36 @@ public class CarryPart : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        if(player != null)
         {
-            if (player != null)
-            {
-                destination = player.transform.Find("CarryPos");
-                //GetComponent<Rigidbody>().useGravity = false;
-                this.transform.position = destination.position;
-                this.transform.parent = GameObject.Find("CarryPos").transform;
-            }
-        }
+            Collider[] colliderHits = Physics.OverlapSphere(transform.position, radius);
 
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            this.transform.parent = null;
-            //GetComponent<Rigidbody>().useGravity = true;
+            foreach (Collider col in colliderHits)
+            {
+                if (col.tag == ("Player") && Input.GetKeyDown(KeyCode.K))
+                {
+                    Debug.Log("Inside");
+                    destination = player.transform.Find("CarryPos");
+                    //GetComponent<Rigidbody>().useGravity = false;
+                    this.transform.position = destination.position;
+                    this.transform.parent = GameObject.Find("CarryPos").transform;
+                }
+                if (Input.GetKeyDown(KeyCode.J))
+                {
+                    this.transform.parent = null;
+                    //GetComponent<Rigidbody>().useGravity = true;
+                }
+                else
+                {
+                    //Debug.Log("Outside");
+                }
+            }
+
         }
+       
+
+
+        
 
         /*
         // Replaced with when entering range of ship
