@@ -11,7 +11,7 @@ public class PickingUp : MonoBehaviourPunCallbacks
     [SerializeField] private LayerMask spaceShipLayer;
     [SerializeField] private Inventory inventory;
     private GameObject otherPlayer;
-
+    public Handler handler;
     private RaycastHit pickup;
 
     // Start is called before the first frame update
@@ -41,6 +41,7 @@ public class PickingUp : MonoBehaviourPunCallbacks
                         //pickup.transform.gameObject.GetComponent<Pickup>().ObjectDestory();
                         //PhotonNetwork.Destroy(pickup.transform.gameObject);
                         pickup.transform.gameObject.GetComponent<PhotonView>().RPC("ObjectDestory", RpcTarget.All);
+                        
                         //photonView.RPC("ObjectDestory", RpcTarget.All, pickup.transform.gameObject.GetComponent<PhotonView>().ViewID);
                     }
                     else if (typ == Pickup_Typs.Pickup.GreenGoo)
