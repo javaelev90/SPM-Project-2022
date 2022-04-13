@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 300483654}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: weaponPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1767822683}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: muzzlePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1868708370}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: camPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 2414603378566706011}
   - component: {fileID: 2414603378566706010}
   - component: {fileID: 2414603378566706009}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2414603379183752700}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: WeaponrotationPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 268452432428986077}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CarryPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 5325859872344005593}
   - component: {fileID: 8119072296369205571}
   - component: {fileID: 521412366071768474}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: PlayerwWeapon
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -383,7 +383,7 @@ MonoBehaviour:
   radius: 1
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   mouseSensitivity: 3
   minXrotation: -90
   maxXrotation: 90
@@ -399,6 +399,8 @@ MonoBehaviour:
   maxTurretToSpawn: 3
   turretCount: 0
   turretOffset: {x: 0, y: 0, z: 0}
+  gooCostTurret: 1
+  metalCostTurret: 1
 --- !u!114 &5370410197791854324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,7 +438,7 @@ MonoBehaviour:
   kineticFrictionCoefficient: 0.3
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
 --- !u!114 &135439137284271476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,7 +541,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8773544538539746374}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: turretPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
