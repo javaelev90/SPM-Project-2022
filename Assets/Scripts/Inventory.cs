@@ -26,6 +26,7 @@ public class Inventory : MonoBehaviour
         metal = 0;
         greenGoo = 0;
         alienMeat = 0;
+        GameObject.FindGameObjectWithTag("InventoryHandler").GetComponent<Handler>().inventory = this;
     }
 
     // Update is called once per frame
