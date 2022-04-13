@@ -52,21 +52,22 @@ public class HealthState : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient)
         {
             GameObject badge = PhotonNetwork.Instantiate("Prefab/ReviveBadge", transform.position, Quaternion.identity);
-            Debug.Log(badge.name);
-            Health = 0;
-            transform.root.gameObject.SetActive(false);
             badge.GetComponent<Pickup>().setPlayerToRevive(gameObject);
-        } 
+            Debug.Log(badge.name);
+        }
+        
+        Health = 0;
+        transform.root.gameObject.SetActive(false);
+        
     }
 
     [PunRPC]
     public void Revive()
     {
-        if (isMine)
-        {
-            transform.root.gameObject.SetActive(true);
-            transform.position = startPosition;
-        }
+        
+        transform.root.gameObject.SetActive(true);
+        transform.position = startPosition;
+        
     }
 
     //-- TEMP F�R TEST -- 
@@ -74,7 +75,7 @@ public class HealthState : MonoBehaviourPunCallbacks
     {
         if (other.gameObject.GetComponent<Projectile>())
         {
-            KillObject();
+            photonView.RPC("KillObject", RpcTarget.All);
         }
     }
 

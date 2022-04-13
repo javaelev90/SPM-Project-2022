@@ -68,20 +68,22 @@ public class PickingUp : MonoBehaviourPunCallbacks
                         inventory.cook();
                     }
                 }
-
-                if (Physics.Raycast(camera.position,
-                    camera.TransformDirection(Vector3.forward),
-                    out pickup,
-                    pickUpDistence,
-                    spaceShipLayer))
+                
+            }
+            Debug.DrawLine(camera.position, camera.TransformDirection(Vector3.forward) * pickUpDistence, Color.blue);
+            if (Physics.Raycast(camera.position,
+                camera.TransformDirection(Vector3.forward),
+                out pickup,
+                pickUpDistence,
+                spaceShipLayer))
+            {
+                Debug.Log("Found spaceshiop");
+                if (Input.GetKey(KeyCode.E))
                 {
-                    if (Input.GetKey(KeyCode.E))
+                    if (inventory.HasReviveBadge)
                     {
-                        if (inventory.HasReviveBadge)
-                        {
-                            inventory.HasReviveBadge = false;
-                            otherPlayer.GetComponent<HealthState>().Revive();
-                        }
+                        inventory.HasReviveBadge = false;
+                        otherPlayer.GetComponent<PhotonView>().RPC("Revive", RpcTarget.All);
                     }
                 }
             }
