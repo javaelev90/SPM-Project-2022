@@ -54,11 +54,11 @@ public class HealthState : MonoBehaviourPunCallbacks
             GameObject badge = PhotonNetwork.Instantiate("Prefab/ReviveBadge", transform.position, Quaternion.identity);
             badge.GetComponent<Pickup>().setPlayerToRevive(gameObject);
             Debug.Log(badge.GetComponent<PhotonView>().ViewID);
-            /*if(isMine){
+            if(isMine){
                 var nextMaster = PhotonNetwork.MasterClient.GetNext();
                 badge.GetComponent<PhotonView>().TransferOwnership(nextMaster);
                 PhotonNetwork.SetMasterClient(nextMaster);
-            }*/
+            }
         }
         
         //if(isMine && PhotonNetwork.IsMasterClient){

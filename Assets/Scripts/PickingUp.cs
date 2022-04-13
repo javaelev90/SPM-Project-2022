@@ -84,9 +84,23 @@ public class PickingUp : MonoBehaviourPunCallbacks
                     {
                         inventory.HasReviveBadge = false;
                         otherPlayer.GetComponent<PhotonView>().RPC("Revive", RpcTarget.All);
+                        /*GameObject deadPlayer = FindDeadPlayer();
+                        if(deadPlayer){
+                            deadPlayer.GetComponent<PhotonView>().RPC("Revive", RpcTarget.All);
+                        }*/
                     }
                 }
             }
         }
+    }
+
+    public GameObject FindDeadPlayer(){
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        for(int i = 0; i < players.Length; i++){
+            if(!players[i].activeSelf){
+                return players[i];
+            }
+        }
+        return null;
     }
 }
