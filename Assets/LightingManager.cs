@@ -28,12 +28,12 @@ public class LightingManager : MonoBehaviour
             if (TimeOfDay > 35f && TimeOfDay < 115f)
             {
                 isNight = true;
-                MoonLight.gameObject.SetActive(false);
+                //MoonLight.gameObject.SetActive(false);
             }
             else
             {
                 isNight = false;
-                MoonLight.gameObject.SetActive(true);
+                //MoonLight.gameObject.SetActive(true);
             }
         }
         else
@@ -47,10 +47,11 @@ public class LightingManager : MonoBehaviour
     private void UpdateLighting(float timePercent)
     {
         RenderSettings.ambientLight = Preset.AmbientColor.Evaluate(timePercent);
+       //RenderSettings. = Preset.AmbientColor.Evaluate(timePercent);
         RenderSettings.fogColor = Preset.FogColor.Evaluate(timePercent);
-        
+        MoonLight.color = Preset.AmbientColor.Evaluate(timePercent);
 
-        if(DirectionalLight != null)
+        if (DirectionalLight != null)
         {
             DirectionalLight.color = Preset.DirectionalColor.Evaluate(timePercent);
             DirectionalLight.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) - 90f, -170, 0));
