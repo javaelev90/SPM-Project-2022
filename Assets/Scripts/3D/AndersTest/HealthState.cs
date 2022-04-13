@@ -51,7 +51,7 @@ public class HealthState : MonoBehaviourPunCallbacks
     {
         if (isMine)
         {
-            GameObject badge = PhotonNetwork.Instantiate("Prefab/ReviveBadge", transform.position, Quaternion.identity);
+            GameObject badge = PhotonNetwork.InstantiateRoomObject("Prefab/ReviveBadge", transform.position, Quaternion.identity);
             Health = 0;
             transform.root.gameObject.SetActive(false);
             badge.GetComponent<Pickup>().setPlayerToRevive(gameObject);
