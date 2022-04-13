@@ -23,6 +23,9 @@
 .vs/
 .vsconfig
 
+# Mac scrap
+.DS_Store
+
 # Gradle cache directory
 .gradle/
 
