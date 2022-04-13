@@ -39,7 +39,7 @@ public class CarryPart : MonoBehaviour
 
             foreach (Collider col in colliderHits)
             {
-                if (col.tag == ("Player") && Input.GetKeyDown(KeyCode.K))
+                if (col.tag == ("Player") && Input.GetKeyDown(KeyCode.E))
                 {
                     Debug.Log("Inside");
                     destination = player.transform.Find("CarryPos");
@@ -47,7 +47,7 @@ public class CarryPart : MonoBehaviour
                     this.transform.position = destination.position;
                     this.transform.parent = GameObject.Find("CarryPos").transform;
                 }
-                if (Input.GetKeyDown(KeyCode.J))
+                if (Input.GetKeyDown(KeyCode.F))
                 {
                     this.transform.parent = null;
                     //GetComponent<Rigidbody>().useGravity = true;
