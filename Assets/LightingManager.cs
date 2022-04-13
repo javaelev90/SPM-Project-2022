@@ -53,11 +53,11 @@ public class LightingManager : MonoBehaviour
         RenderSettings.ambientLight = Preset.AmbientColor.Evaluate(timePercent);
        //RenderSettings. = Preset.AmbientColor.Evaluate(timePercent);
         RenderSettings.fogColor = Preset.FogColor.Evaluate(timePercent);
-        MoonLight.color = Preset.AmbientColor.Evaluate(timePercent);
+        MoonLight.color = Preset.MoonLightColor.Evaluate(timePercent);
 
         if (DirectionalLight != null)
         {
-            DirectionalLight.color = Preset.DirectionalColor.Evaluate(timePercent);
+            //DirectionalLight.color = Preset.DirectionalColor.Evaluate(timePercent);
             DirectionalLight.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) - 90f, -170, 0));
         }
 
