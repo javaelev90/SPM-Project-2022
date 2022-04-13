@@ -38,23 +38,30 @@ public class PickingUp : MonoBehaviourPunCallbacks
                     if (typ == Pickup_Typs.Pickup.Metal)
                     {
                         inventory.addMetal(pickup.transform.gameObject.GetComponent<Pickup>().amount);
-                        PhotonNetwork.Destroy(pickup.transform.gameObject);
+                        //pickup.transform.gameObject.GetComponent<Pickup>().ObjectDestory();
+                        //PhotonNetwork.Destroy(pickup.transform.gameObject);
+                        pickup.transform.gameObject.GetComponent<PhotonView>().RPC("ObjectDestory", RpcTarget.All);
+                        //photonView.RPC("ObjectDestory", RpcTarget.All, pickup.transform.gameObject.GetComponent<PhotonView>().ViewID);
                     }
                     else if (typ == Pickup_Typs.Pickup.GreenGoo)
                     {
                         inventory.addGreenGoo(pickup.transform.gameObject.GetComponent<Pickup>().amount);
-                        PhotonNetwork.Destroy(pickup.transform.gameObject);
+                        //PhotonNetwork.Destroy(pickup.transform.gameObject);
+                        pickup.transform.gameObject.GetComponent<PhotonView>().RPC("ObjectDestory", RpcTarget.All);
                     }
                     else if (typ == Pickup_Typs.Pickup.AlienMeat)
                     {
                         inventory.addAlienMeat(pickup.transform.gameObject.GetComponent<Pickup>().amount);
-                        PhotonNetwork.Destroy(pickup.transform.gameObject);
+                        //PhotonNetwork.Destroy(pickup.transform.gameObject);
+                        pickup.transform.gameObject.GetComponent<PhotonView>().RPC("ObjectDestory", RpcTarget.All);
                     }
                     else if (typ == Pickup_Typs.Pickup.Revive)
                     {
                         inventory.HasReviveBadge = true;
                         otherPlayer = pickup.transform.gameObject.GetComponent<Pickup>().getPlayerToRevive();
-                        PhotonNetwork.Destroy(pickup.transform.gameObject);
+                        //PhotonNetwork.Destroy(pickup.transform.gameObject);
+                        //photonView.RPC("ObjectDestory", RpcTarget.All, pickup.transform.gameObject);
+                        pickup.transform.gameObject.GetComponent<PhotonView>().RPC("ObjectDestory", RpcTarget.All);
                     }
                     else if (typ == Pickup_Typs.Pickup.Fire)
                     {

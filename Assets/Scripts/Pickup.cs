@@ -34,5 +34,12 @@ public class Pickup : MonoBehaviourPunCallbacks
     {
         playerToRevive = player;
     }
-
+    [PunRPC]
+    public void ObjectDestory()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.Destroy(gameObject);
+        }
+    }
 }

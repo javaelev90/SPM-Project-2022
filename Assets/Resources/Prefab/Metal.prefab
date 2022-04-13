@@ -110,8 +110,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typ: 0
-  amount: 1
   playerToRevive: {fileID: 0}
+  amount: 1
 --- !u!114 &5759025648505165474
 MonoBehaviour:
   m_ObjectHideFlags: 0

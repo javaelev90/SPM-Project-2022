@@ -208,6 +208,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Green Goo
       objectReference: {fileID: 0}
+    - target: {fileID: 5563257113643808014, guid: e91eaeefca1cf6b44a325df71e90cc48, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6372861837906589966, guid: e91eaeefca1cf6b44a325df71e90cc48, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -1447,6 +1451,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 31444d9ac230fb440881e1be3646f525, type: 3}
   m_PrefabInstance: {fileID: 222478111}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &223175479
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 223175480}
+  m_Layer: 0
+  m_Name: MetalPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &223175480
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223175479}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 264.6698, y: 17.070574, z: 298.08884}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 22
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &225827616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1888,6 +1922,66 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2c6bcd4c93d6bad47b8a442200dd9e76, type: 3}
   m_PrefabInstance: {fileID: 320257607}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &340131460
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 340131461}
+  m_Layer: 0
+  m_Name: GreenGoo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &340131461
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340131460}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 279.78784, y: 10.09, z: 273.008}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &350175009
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 350175010}
+  m_Layer: 0
+  m_Name: GreenGoo (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &350175010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350175009}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 279.78784, y: 10.09, z: 271.608}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 25
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &376649440
 GameObject:
   m_ObjectHideFlags: 0
@@ -1898,6 +1992,7 @@ GameObject:
   m_Component:
   - component: {fileID: 376649442}
   - component: {fileID: 376649441}
+  - component: {fileID: 376649443}
   m_Layer: 0
   m_Name: Launcher
   m_TagString: Untagged
@@ -1919,6 +2014,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPosition: {fileID: 1264618482}
   playerPrefab: {fileID: -6889581815435091310, guid: 05b0a5fa33ad68a4b81adcab84a142c1, type: 3}
+  objectInstantiater: {fileID: 376649443}
 --- !u!4 &376649442
 Transform:
   m_ObjectHideFlags: 0
@@ -1933,6 +2029,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &376649443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376649440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9282ffc5a5eb5346a04ec4f6f66c211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  greenGooPrefab: {fileID: 5563257113643808014, guid: e91eaeefca1cf6b44a325df71e90cc48, type: 3}
+  greenGooPositions:
+  - {fileID: 340131461}
+  - {fileID: 350175010}
+  metalPrefab: {fileID: 5648485573748196395, guid: 8d9299097781d6a4cbbca1a773979f70, type: 3}
+  metalPositions:
+  - {fileID: 223175480}
+  - {fileID: 1297822656}
+  alienMeatPrefab: {fileID: 5771315748241732598, guid: 932af93578deccb4392c0c68f5c8ca0e, type: 3}
+  alienMeatPositions:
+  - {fileID: 1998451507}
+  - {fileID: 1210676133}
+  prefabPath: Prefab/
 --- !u!1 &378324009
 GameObject:
   m_ObjectHideFlags: 0
@@ -2478,6 +2599,10 @@ PrefabInstance:
     - target: {fileID: 5771315748241732598, guid: 932af93578deccb4392c0c68f5c8ca0e, type: 3}
       propertyPath: m_Name
       value: Alien Meat
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771315748241732598, guid: 932af93578deccb4392c0c68f5c8ca0e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 932af93578deccb4392c0c68f5c8ca0e, type: 3}
@@ -3354,6 +3479,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Metal (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5648485573748196395, guid: 8d9299097781d6a4cbbca1a773979f70, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5759025648505165474, guid: 8d9299097781d6a4cbbca1a773979f70, type: 3}
       propertyPath: sceneViewId
       value: 4
@@ -4182,6 +4311,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Alien Meat (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5771315748241732598, guid: 932af93578deccb4392c0c68f5c8ca0e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 932af93578deccb4392c0c68f5c8ca0e, type: 3}
 --- !u!1001 &1010377446
@@ -4975,6 +5108,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d1e5ad5902997f94897c3bdfddad85c0, type: 3}
   m_PrefabInstance: {fileID: 1182096198}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1210676132
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1210676133}
+  m_Layer: 0
+  m_Name: Alien Meat (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1210676133
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210676132}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 282.058, y: 9.77, z: 333.02225}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 27
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1264618478
 GameObject:
   m_ObjectHideFlags: 0
@@ -5214,6 +5377,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 30b293cf6a828a242aff0f94fb79e8ef, type: 3}
   m_PrefabInstance: {fileID: 1289536913}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1297822655
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1297822656}
+  m_Layer: 0
+  m_Name: MetalPosition2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1297822656
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297822655}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 264.6698, y: 17.070574, z: 296.631}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 23
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1313057968
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5286,6 +5479,10 @@ PrefabInstance:
     - target: {fileID: 5648485573748196395, guid: 8d9299097781d6a4cbbca1a773979f70, type: 3}
       propertyPath: m_Name
       value: Metal
+      objectReference: {fileID: 0}
+    - target: {fileID: 5648485573748196395, guid: 8d9299097781d6a4cbbca1a773979f70, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5759025648505165474, guid: 8d9299097781d6a4cbbca1a773979f70, type: 3}
       propertyPath: sceneViewId
@@ -5721,6 +5918,10 @@ PrefabInstance:
     - target: {fileID: 5563257113643808014, guid: e91eaeefca1cf6b44a325df71e90cc48, type: 3}
       propertyPath: m_Name
       value: Green Goo (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563257113643808014, guid: e91eaeefca1cf6b44a325df71e90cc48, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6372861837906589966, guid: e91eaeefca1cf6b44a325df71e90cc48, type: 3}
       propertyPath: m_RootOrder
@@ -8211,6 +8412,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2c6bcd4c93d6bad47b8a442200dd9e76, type: 3}
   m_PrefabInstance: {fileID: 1990241049}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1998451506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1998451507}
+  m_Layer: 0
+  m_Name: Alien Meat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1998451507
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998451506}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 283.003, y: 9.77, z: 333.02225}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 26
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2005514437
 PrefabInstance:
   m_ObjectHideFlags: 0
