@@ -25,14 +25,18 @@ public class LightingManager : MonoBehaviour
             TimeOfDay += Time.deltaTime;
             TimeOfDay %= 150f;
             UpdateLighting(TimeOfDay / 150f);
+            //MoonLight.intensity = (TimeOfDay / 150f);
             if (TimeOfDay > 35f && TimeOfDay < 115f)
             {
                 isNight = true;
+                
+                //MoonLight.intensity = 0.2f;
                 //MoonLight.gameObject.SetActive(false);
             }
             else
             {
                 isNight = false;
+                //MoonLight.intensity = 3f;
                 //MoonLight.gameObject.SetActive(true);
             }
         }
