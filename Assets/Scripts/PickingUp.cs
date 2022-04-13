@@ -32,7 +32,7 @@ public class PickingUp : MonoBehaviourPunCallbacks
             pickupLayer))
             {
 
-                if (Input.GetKey(KeyCode.P))
+                if (Input.GetKey(KeyCode.E))
                 {
                     Pickup_Typs.Pickup typ = pickup.collider.gameObject.GetComponent<Pickup>().getTyp();
                     if (typ == Pickup_Typs.Pickup.Metal)
@@ -76,7 +76,7 @@ public class PickingUp : MonoBehaviourPunCallbacks
                     pickUpDistence,
                     spaceShipLayer))
                 {
-                    if (Input.GetKey(KeyCode.L))
+                    if (Input.GetKey(KeyCode.E))
                     {
                         if (inventory.HasReviveBadge)
                         {

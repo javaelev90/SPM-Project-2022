@@ -38,7 +38,7 @@ public class Ship : MonoBehaviour
 
             foreach (Collider col in colliderHits)
             {
-                if (col.tag == ("Player") && Input.GetKeyDown(KeyCode.L) && Panel != null && PartPickup != null)
+                if (col.tag == ("Player") && Input.GetKeyDown(KeyCode.E) && Panel != null && PartPickup != null)
                 {
                     Debug.Log("Inside");
                     Destroy(PartPickup.gameObject);
