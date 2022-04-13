@@ -14,6 +14,7 @@ public class Dialogue : MonoBehaviour
     public bool isFirst;
     private bool isDone;
     private bool isTyping;
+    [SerializeField] private GameObject canvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +63,7 @@ public class Dialogue : MonoBehaviour
             StartCoroutine(Type());
         }else{
             gameObject.SetActive(false);
+            canvas.SetActive(false);
         }
     }
 }
