@@ -93,6 +93,10 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
+    public void eat(){
+        cookedAlienMeat--;
+    }
+
     public bool cook()
     {
         if (alienMeat > 0)

@@ -8,8 +8,12 @@ public class PickingUp : MonoBehaviourPunCallbacks
     private Transform camera;
     [SerializeField] private float pickUpDistence = 2;
     [SerializeField] private LayerMask pickupLayer;
+
+    [SerializeField] private LayerMask fireLayer;
+
     [SerializeField] private LayerMask spaceShipLayer;
     [SerializeField] private Inventory inventory;
+    [SerializeField] private HealthState healthState;
     private GameObject otherPlayer;
     public Handler handler;
     private RaycastHit pickup;
@@ -31,10 +35,10 @@ public class PickingUp : MonoBehaviourPunCallbacks
             pickUpDistence,
             pickupLayer))
             {
-
+                Pickup_Typs.Pickup typ = pickup.collider.gameObject.GetComponent<Pickup>().getTyp();
                 if (Input.GetKey(KeyCode.E))
                 {
-                    Pickup_Typs.Pickup typ = pickup.collider.gameObject.GetComponent<Pickup>().getTyp();
+                    
                     if (typ == Pickup_Typs.Pickup.Metal)
                     {
                         inventory.addMetal(pickup.transform.gameObject.GetComponent<Pickup>().amount);
@@ -64,12 +68,8 @@ public class PickingUp : MonoBehaviourPunCallbacks
                         //photonView.RPC("ObjectDestory", RpcTarget.All, pickup.transform.gameObject);
                         pickup.transform.gameObject.GetComponent<PhotonView>().RPC("ObjectDestory", RpcTarget.All);
                     }
-                    else if (typ == Pickup_Typs.Pickup.Fire)
-                    {
-                        inventory.cook();
-                    }
+                    
                 }
-
                 if (Physics.Raycast(camera.position,
                     camera.TransformDirection(Vector3.forward),
                     out pickup,
@@ -85,6 +85,24 @@ public class PickingUp : MonoBehaviourPunCallbacks
                         }
                     }
                 }
+            }
+
+            if (Physics.Raycast(camera.position,
+            camera.TransformDirection(Vector3.forward),
+            out pickup,
+            pickUpDistence,
+            fireLayer))
+            {
+                if(Input.GetKey(KeyCode.C)){
+                    inventory.cook();
+                }
+            }
+            if (Input.GetKey(KeyCode.X))
+            {
+                if(inventory.CookedAlienMeat > 0){
+                inventory.eat();
+                healthState.AddHealth(1);
+            }
             }
         }
     }

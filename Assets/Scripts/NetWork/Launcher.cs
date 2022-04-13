@@ -21,7 +21,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         RoomOptions roomOptions = new RoomOptions();
         print("Connected");
-        PhotonNetwork.JoinOrCreateRoom("Room1", roomOptions, null, null);
+        PhotonNetwork.JoinOrCreateRoom("Room2", roomOptions, null, null);
     }
 
     public override void OnJoinedRoom()
