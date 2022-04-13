@@ -60,12 +60,19 @@ public class Controller3D : MonoBehaviourPunCallbacks
     [SerializeField] private int maxTurretToSpawn = 3;
     [SerializeField] private int turretCount;
     [SerializeField] private Vector3 turretOffset;
+    [SerializeField] private int gooCostTurret = 1;
+    [SerializeField] private int metalCostTurret = 1;
     private GameObject turretObject;
     private bool canPutDownTurret;
     private string pathTurret = "Prefab/Player/TurretAssembly";
 
+    //Cached variables
+    private Inventory inventory;
+
+
     private void Awake()
     {
+        inventory = GetComponent<Inventory>();
         stateMachine = new StateMachine(states, this);
         groundCheckDistance = 10 * skinWidth;
 
@@ -86,6 +93,7 @@ public class Controller3D : MonoBehaviourPunCallbacks
             InputHandling();
             PlayerRotation();
             WeaponRotation();
+            TurretHandling();
             stateMachine.UpdateStates();
         }
     }
@@ -117,7 +125,7 @@ public class Controller3D : MonoBehaviourPunCallbacks
     private void WeaponRotation()
     {
         weaponRotation.transform.rotation = Quaternion.Euler(cameraRotation.x, cameraRotation.y, 0f);
-        Physics.Raycast(muzzlePoint.transform.position, weaponRotation.transform.rotation * Vector3.forward * 10f, out RaycastHit hit, obstacleLayer);
+
         Debug.DrawRay(muzzlePoint.transform.position, weaponRotation.transform.rotation * Vector3.forward * 100f, Color.red);
 
         if (!canPutDownTurret)
@@ -131,7 +139,13 @@ public class Controller3D : MonoBehaviourPunCallbacks
             }
         }
 
-        if (turretCount < maxTurretToSpawn)
+
+    }
+
+    private void TurretHandling()
+    {
+        //Physics.Raycast(muzzlePoint.transform.position, weaponRotation.transform.rotation * Vector3.forward * 10f, out RaycastHit hit, obstacleLayer);
+        if (turretCount < maxTurretToSpawn && (inventory.GreenGoo >= gooCostTurret && inventory.Metal >= metalCostTurret))
         {
             if (Input.GetMouseButtonDown(1))
             {
@@ -147,14 +161,13 @@ public class Controller3D : MonoBehaviourPunCallbacks
 
             if (canPutDownTurret && Input.GetMouseButtonUp(1))
             {
-                if (hit.collider != null)
-                {
-                    turretObject.transform.rotation = Quaternion.FromToRotation(turretObject.transform.up, Vector3.up) * turretObject.transform.rotation;
-                    turretObject.transform.position = turretPos.position;
-                    turretObject.GetComponent<Turret>().IsPlaced = true;
-                    turretCount++;
-                    canPutDownTurret = false;
-                }
+                turretObject.transform.rotation = Quaternion.FromToRotation(turretObject.transform.up, Vector3.up) * turretObject.transform.rotation;
+                turretObject.transform.position = turretPos.position;
+                turretObject.GetComponent<Turret>().IsPlaced = true;
+                turretCount++;
+                canPutDownTurret = false;
+                inventory.removeMetalAndGreenGoo(metalCostTurret,gooCostTurret);
+                
             }
         }
     }
