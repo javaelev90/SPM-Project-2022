@@ -39,7 +39,7 @@ public class CarryPart : MonoBehaviour
 
             foreach (Collider col in colliderHits)
             {
-                if (col.tag == ("Player") && Input.GetKeyDown(KeyCode.E))
+                if (col.tag == ("Player") && Input.GetKeyDown(KeyCode.G))
                 {
                     Debug.Log("Inside");
                     destination = player.transform.Find("CarryPos");
