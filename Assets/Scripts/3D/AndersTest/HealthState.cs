@@ -64,7 +64,7 @@ public class HealthState : MonoBehaviourPunCallbacks
     [PunRPC]
     public void Revive()
     {
-        
+        Debug.Log("Trying to revive");
         transform.root.gameObject.SetActive(true);
         transform.position = startPosition;
         

@@ -9,6 +9,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     [SerializeField] Transform spawnPosition;
     [SerializeField] private PhotonView playerPrefab;
     [SerializeField] private ObjectInstantiater objectInstantiater;
+    [SerializeField] private string roomName = "Room1";
     private string pathPlayer = "Prefab/Player/PlayerwWeapon";
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         RoomOptions roomOptions = new RoomOptions();
         print("Connected");
-        PhotonNetwork.JoinOrCreateRoom("Room1", roomOptions, null, null);
+        PhotonNetwork.JoinOrCreateRoom(roomName, roomOptions, null, null);
     }
 
     public override void OnJoinedRoom()
