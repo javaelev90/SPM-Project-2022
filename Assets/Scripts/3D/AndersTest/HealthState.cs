@@ -49,9 +49,10 @@ public class HealthState : MonoBehaviourPunCallbacks
     [PunRPC]
     public void KillObject()
     {
-        if (isMine)
+        if (PhotonNetwork.IsMasterClient)
         {
-            GameObject badge = PhotonNetwork.InstantiateRoomObject("Prefab/ReviveBadge", transform.position, Quaternion.identity);
+            GameObject badge = PhotonNetwork.Instantiate("Prefab/ReviveBadge", transform.position, Quaternion.identity);
+            Debug.Log(badge.name);
             Health = 0;
             transform.root.gameObject.SetActive(false);
             badge.GetComponent<Pickup>().setPlayerToRevive(gameObject);
