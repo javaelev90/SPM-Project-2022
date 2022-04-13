@@ -10,6 +10,8 @@ public class LightingManager : MonoBehaviour
     [SerializeField] private LightingPreset Preset;
     [SerializeField, Range(0, 150)] private float TimeOfDay;
 
+    public bool isNight { get; private set; }
+
 
     private void Update()
     {
@@ -25,10 +27,12 @@ public class LightingManager : MonoBehaviour
             UpdateLighting(TimeOfDay / 150f);
             if (TimeOfDay > 35f && TimeOfDay < 115f)
             {
+                isNight = true;
                 MoonLight.gameObject.SetActive(false);
             }
             else
             {
+                isNight = false;
                 MoonLight.gameObject.SetActive(true);
             }
         }
