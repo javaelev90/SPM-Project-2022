@@ -68,13 +68,13 @@ public class HealthState : MonoBehaviourPunCallbacks
         }
     }
 
-    //-- TEMP FÖR TEST -- 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.GetComponent<Projectile>())
-    //    {
-    //        KillObject();
-    //    }
-    //}
+    //-- TEMP Fï¿½R TEST -- 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<Projectile>())
+        {
+            KillObject();
+        }
+    }
 
 }
