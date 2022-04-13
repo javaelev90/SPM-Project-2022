@@ -10,10 +10,10 @@ public class Inventory : MonoBehaviour
     [SerializeField] int cookedAlienMeat;
     [SerializeField] bool hasReviveBadge;
 
-    public int Metal { get;}
-    public int GreenGoo { get; }
-    public int AlienMeat { get; }
-    public int CookedAlienMeat { get; }
+    public int Metal => metal;
+    public int GreenGoo => greenGoo;
+    public int AlienMeat => alienMeat;
+    public int CookedAlienMeat => cookedAlienMeat;
     public bool HasReviveBadge
     {
         get { return hasReviveBadge; }
