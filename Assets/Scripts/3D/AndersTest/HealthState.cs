@@ -19,6 +19,7 @@ public class HealthState : MonoBehaviourPunCallbacks
         Health = initialHealth;
         isMine = photonView.IsMine;
         startPosition = transform.position;
+        GameObject.FindGameObjectWithTag("HealthHandler").GetComponent<HealthHandler>().hs = this;
     }
 
     [PunRPC]

@@ -13,6 +13,8 @@ public class HealthHandler : MonoBehaviour
 
     void Start()
     {
+        //StartCoroutine(FindHealthState());
+        
 
     }
     IEnumerator FindHealthState(){

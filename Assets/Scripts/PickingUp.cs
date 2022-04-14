@@ -101,7 +101,7 @@ public class PickingUp : MonoBehaviourPunCallbacks
             {
                 if(inventory.CookedAlienMeat > 0){
                 inventory.eat();
-                healthState.AddHealth(1);
+                photonView.RPC("AddHealth", RpcTarget.All, 1);
             }
             }
         }

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Bullet
   - Ship
+  - HealthHandler
+  - InventoryHandler
   layers:
   - Default
   - TransparentFX
@@ -31,7 +33,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Fire
   - 
   - 
   - 
