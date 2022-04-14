@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
-public class EnemyHealthHandler : MonoBehaviourPunCallbacks
+public class EnemyHealthHandler : MonoBehaviour
 {
 
     [SerializeField] Slider slider;
@@ -19,4 +19,10 @@ public class EnemyHealthHandler : MonoBehaviourPunCallbacks
     {
         slider.value = (float)state.Health / (float)state.initialHealth;
     }
+
+    //[PunRPC]
+    //public void UpdateHealthBar()
+    //{
+        
+    //}
 }

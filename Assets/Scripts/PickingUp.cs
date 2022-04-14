@@ -27,8 +27,8 @@ public class PickingUp : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        if (photonView.IsMine)
-        {
+        //if (photonView.IsMine)
+        //{
             if (Physics.Raycast(camera.position,
             camera.TransformDirection(Vector3.forward),
             out pickup,
@@ -44,6 +44,7 @@ public class PickingUp : MonoBehaviourPunCallbacks
                         inventory.addMetal(pickup.transform.gameObject.GetComponent<Pickup>().amount);
                         //pickup.transform.gameObject.GetComponent<Pickup>().ObjectDestory();
                         //PhotonNetwork.Destroy(pickup.transform.gameObject);
+                        Destroy(pickup.transform.gameObject);
                         pickup.transform.gameObject.GetComponent<PhotonView>().RPC("ObjectDestory", RpcTarget.All);
                         
                         //photonView.RPC("ObjectDestory", RpcTarget.All, pickup.transform.gameObject.GetComponent<PhotonView>().ViewID);
@@ -52,12 +53,14 @@ public class PickingUp : MonoBehaviourPunCallbacks
                     {
                         inventory.addGreenGoo(pickup.transform.gameObject.GetComponent<Pickup>().amount);
                         //PhotonNetwork.Destroy(pickup.transform.gameObject);
+                        Destroy(pickup.transform.gameObject);
                         pickup.transform.gameObject.GetComponent<PhotonView>().RPC("ObjectDestory", RpcTarget.All);
                     }
                     else if (typ == Pickup_Typs.Pickup.AlienMeat)
                     {
                         inventory.addAlienMeat(pickup.transform.gameObject.GetComponent<Pickup>().amount);
                         //PhotonNetwork.Destroy(pickup.transform.gameObject);
+                        Destroy(pickup.transform.gameObject);
                         pickup.transform.gameObject.GetComponent<PhotonView>().RPC("ObjectDestory", RpcTarget.All);
                     }
                     else if (typ == Pickup_Typs.Pickup.Revive)
@@ -103,7 +106,7 @@ public class PickingUp : MonoBehaviourPunCallbacks
                 inventory.eat();
                 photonView.RPC("AddHealth", RpcTarget.All, 1);
             }
-            }
+            //}
         }
     }
 }

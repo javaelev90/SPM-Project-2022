@@ -112,9 +112,13 @@ public class AIEnemyFollow : MonoBehaviourPunCallbacks
     {
         if (other.gameObject.GetComponent<Projectile>())
         {
-            photonView.RPC("RemoveHealth", RpcTarget.All, 1);
-            other.gameObject.GetComponent<PhotonView>().RPC("DestoryProjectile", RpcTarget.All);
+            //photonView.RPC("RemoveHealth", RpcTarget.All, 1);
+            //other.gameObject.GetComponent<PhotonView>().RPC("DestoryProjectile", RpcTarget.All);
             //PhotonNetwork.Destroy(gameObject);
+            photonView.RPC("RemoveHealth", RpcTarget.All, 1);
+            //photonView.RPC("UpdateHealthBar", RpcTarget.All);
+
+            other.gameObject.GetComponent<PhotonView>().RPC("DestoryProjectile", RpcTarget.All);
         }
     }
 
@@ -128,12 +132,14 @@ public class AIEnemyFollow : MonoBehaviourPunCallbacks
         //if (collision.gameObject.GetComponent<HealthState>())
         //{
         //    collision.gameObject.GetComponent<PhotonView>().RPC("RemoveHealth", RpcTarget.All, 1);
+        ////}
+        //if (collision.gameObject.GetComponent<Projectile>())
+        //{
+        //    photonView.RPC("RemoveHealth", RpcTarget.All, 1);
+        //    photonView.RPC("UpdateHealthBar", RpcTarget.All, 1);
+
+        //    collision.gameObject.GetComponent<PhotonView>().RPC("DestoryProjectile", RpcTarget.All);
+        //    //PhotonNetwork.Destroy(gameObject);
         //}
-        if (collision.gameObject.GetComponent<Projectile>())
-        {
-            photonView.RPC("RemoveHealth", RpcTarget.All, 1);
-            collision.gameObject.GetComponent<PhotonView>().RPC("DestoryProjectile", RpcTarget.All);
-            //PhotonNetwork.Destroy(gameObject);
-        }
     }
 }

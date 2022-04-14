@@ -32,10 +32,10 @@ public class HealthState : MonoBehaviourPunCallbacks
     [PunRPC]
     public void RemoveHealth(int health)
     {
-        if (isMine)
-        {
-            Health -= health;
-        }
+        //if (isMine)
+        //{
+        Health -= health;
+        //}
             
     }
 
