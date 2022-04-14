@@ -75,17 +75,18 @@ public class HealthState : MonoBehaviourPunCallbacks
     {
         Debug.Log("Trying to revive");
         transform.root.gameObject.SetActive(true);
+        ResetHealth();
         transform.position = startPosition;
         
     }
 
     //-- TEMP F�R TEST -- 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.GetComponent<Projectile>())
-        {
-            photonView.RPC("KillObject", RpcTarget.All);
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.GetComponent<Projectile>())
+    //    {
+    //        photonView.RPC("KillObject", RpcTarget.All);
+    //    }
+    //}
 
 }
