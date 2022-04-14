@@ -32,7 +32,7 @@ public class Projectile : MonoBehaviourPunCallbacks
     [PunRPC]
     public void DestoryProjectile()
     {
-        if (PhotonNetwork.IsMasterClient)
+        if (photonView.IsMine)
         {
             PhotonNetwork.Destroy(gameObject);
         }
