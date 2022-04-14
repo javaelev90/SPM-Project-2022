@@ -556,7 +556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d70e5ca21ae9a74aaac7c149c111ff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHealth: 10
+  initialHealth: 3
   reviveTestSubject: 0
 --- !u!114 &4269687686371593914
 MonoBehaviour:
