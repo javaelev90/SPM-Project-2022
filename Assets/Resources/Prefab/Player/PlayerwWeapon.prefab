@@ -371,7 +371,7 @@ MonoBehaviour:
   weaponRotation: {fileID: 2414603379183752675}
   muzzlePoint: {fileID: 1767822682}
   bullet: {fileID: -6395961040285132664, guid: ba207262921559e4b90c411efa76d658, type: 3}
-  bulletSpeed: 35
+  bulletSpeed: 45
   skinWidth: 0.01
   groundCheckDistance: 0.1
   isFPS: 1

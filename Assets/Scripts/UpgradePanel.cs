@@ -22,6 +22,7 @@ public class UpgradePanel : MonoBehaviour
     {
         Debug.Log("Level up!");
         Panel.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // When hitting X
