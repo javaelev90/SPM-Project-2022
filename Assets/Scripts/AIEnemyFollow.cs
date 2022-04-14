@@ -125,9 +125,15 @@ public class AIEnemyFollow : MonoBehaviourPunCallbacks
         //{
         //    PhotonNetwork.Destroy(gameObject);
         //}
-        if (collision.gameObject.GetComponent<HealthState>())
+        //if (collision.gameObject.GetComponent<HealthState>())
+        //{
+        //    collision.gameObject.GetComponent<PhotonView>().RPC("RemoveHealth", RpcTarget.All, 1);
+        //}
+        if (collision.gameObject.GetComponent<Projectile>())
         {
-            collision.gameObject.GetComponent<PhotonView>().RPC("RemoveHealth", RpcTarget.All, 1);
+            photonView.RPC("RemoveHealth", RpcTarget.All, 1);
+            collision.gameObject.GetComponent<PhotonView>().RPC("DestoryProjectile", RpcTarget.All);
+            //PhotonNetwork.Destroy(gameObject);
         }
     }
 }
