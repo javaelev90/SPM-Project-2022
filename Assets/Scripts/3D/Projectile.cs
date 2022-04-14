@@ -29,4 +29,12 @@ public class Projectile : MonoBehaviourPunCallbacks
         }
     }
 
+    [PunRPC]
+    public void DestoryProjectile()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.Destroy(gameObject);
+        }
+    }
 }

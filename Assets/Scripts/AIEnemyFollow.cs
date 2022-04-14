@@ -18,7 +18,7 @@ public class AIEnemyFollow : MonoBehaviourPunCallbacks
     [SerializeField] bool targetShip;
     private GameObject targetPlayer;
     private GameObject shipTarget;
-
+    private HealthState healthState;
     //public void OnPhotonInstantiate(PhotonMessageInfo info)
     //{
     //    Debug.Log("initialized");
@@ -32,6 +32,7 @@ public class AIEnemyFollow : MonoBehaviourPunCallbacks
         StartCoroutine(Wait(5));
         //Wait(5);
         shipTarget = GameObject.FindGameObjectWithTag("Ship");
+        healthState = GetComponent<HealthState>();
     }
 
     // Wait for player to spawn
@@ -55,7 +56,10 @@ public class AIEnemyFollow : MonoBehaviourPunCallbacks
         {
             FollowPlayer();
         }
-        
+        if (healthState.Health <= 0)
+        {
+            PhotonNetwork.Destroy(gameObject);
+        }
     }
 
     private void MoveToShip()
@@ -108,7 +112,9 @@ public class AIEnemyFollow : MonoBehaviourPunCallbacks
     {
         if (other.gameObject.GetComponent<Projectile>())
         {
-            PhotonNetwork.Destroy(gameObject);
+            photonView.RPC("RemoveHealth", RpcTarget.All, 1);
+            other.gameObject.GetComponent<PhotonView>().RPC("DestoryProjectile", RpcTarget.All);
+            //PhotonNetwork.Destroy(gameObject);
         }
     }
 

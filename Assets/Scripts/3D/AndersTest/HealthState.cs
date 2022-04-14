@@ -8,7 +8,7 @@ public class HealthState : MonoBehaviourPunCallbacks
 {
     private bool isMine;
     [Range(1, 100)]
-    [SerializeField] int initialHealth = 10;
+    [SerializeField] public int initialHealth = 10;
     Vector3 startPosition;
     [SerializeField] private bool reviveTestSubject;
 
@@ -35,7 +35,6 @@ public class HealthState : MonoBehaviourPunCallbacks
         if (isMine)
         {
             Health -= health;
-            Debug.Log(Health);
         }
             
     }
