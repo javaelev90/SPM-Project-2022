@@ -19,6 +19,13 @@ public class AIEnemyFollow : MonoBehaviourPunCallbacks
     private GameObject targetPlayer;
     private GameObject shipTarget;
 
+    //public void OnPhotonInstantiate(PhotonMessageInfo info)
+    //{
+    //    Debug.Log("initialized");
+    //    object[] instantiationData = info.photonView.InstantiationData;
+    //    targetShip = (bool)instantiationData[0];
+    //}
+
     // Start is called before the first frame update
     void Start()
     {

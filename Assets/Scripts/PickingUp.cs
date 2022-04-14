@@ -8,10 +8,14 @@ public class PickingUp : MonoBehaviourPunCallbacks
     private Transform camera;
     [SerializeField] private float pickUpDistence = 2;
     [SerializeField] private LayerMask pickupLayer;
+
+    [SerializeField] private LayerMask fireLayer;
+
     [SerializeField] private LayerMask spaceShipLayer;
     [SerializeField] private Inventory inventory;
+    [SerializeField] private HealthState healthState;
     private GameObject otherPlayer;
-
+    public Handler handler;
     private RaycastHit pickup;
 
     // Start is called before the first frame update
@@ -31,16 +35,17 @@ public class PickingUp : MonoBehaviourPunCallbacks
             pickUpDistence,
             pickupLayer))
             {
-
+                Pickup_Typs.Pickup typ = pickup.collider.gameObject.GetComponent<Pickup>().getTyp();
                 if (Input.GetKey(KeyCode.E))
                 {
-                    Pickup_Typs.Pickup typ = pickup.collider.gameObject.GetComponent<Pickup>().getTyp();
+                    
                     if (typ == Pickup_Typs.Pickup.Metal)
                     {
                         inventory.addMetal(pickup.transform.gameObject.GetComponent<Pickup>().amount);
                         //pickup.transform.gameObject.GetComponent<Pickup>().ObjectDestory();
                         //PhotonNetwork.Destroy(pickup.transform.gameObject);
                         pickup.transform.gameObject.GetComponent<PhotonView>().RPC("ObjectDestory", RpcTarget.All);
+                        
                         //photonView.RPC("ObjectDestory", RpcTarget.All, pickup.transform.gameObject.GetComponent<PhotonView>().ViewID);
                     }
                     else if (typ == Pickup_Typs.Pickup.GreenGoo)
@@ -61,46 +66,44 @@ public class PickingUp : MonoBehaviourPunCallbacks
                         otherPlayer = pickup.transform.gameObject.GetComponent<Pickup>().getPlayerToRevive();
                         //PhotonNetwork.Destroy(pickup.transform.gameObject);
                         //photonView.RPC("ObjectDestory", RpcTarget.All, pickup.transform.gameObject);
-                        //pickup.transform.gameObject.GetComponent<PhotonView>().RPC("ObjectDestory", RpcTarget.All);
+                        pickup.transform.gameObject.GetComponent<PhotonView>().RPC("ObjectDestory", RpcTarget.All);
                     }
-                    else if (typ == Pickup_Typs.Pickup.Fire)
-                    {
-                        inventory.cook();
-                    }
+                    
                 }
-                
-            }
-            Debug.DrawLine(camera.position, camera.TransformDirection(Vector3.forward) * pickUpDistence, Color.blue);
-            if (Physics.Raycast(camera.position,
-                camera.TransformDirection(Vector3.forward),
-                out pickup,
-                pickUpDistence,
-                spaceShipLayer))
-            {
-                Debug.Log("Found spaceshiop");
-                if (Input.GetKey(KeyCode.E))
+                if (Physics.Raycast(camera.position,
+                    camera.TransformDirection(Vector3.forward),
+                    out pickup,
+                    pickUpDistence,
+                    spaceShipLayer))
                 {
-                    if (inventory.HasReviveBadge)
+                    if (Input.GetKey(KeyCode.E))
                     {
-                        inventory.HasReviveBadge = false;
-                        otherPlayer.GetComponent<PhotonView>().RPC("Revive", RpcTarget.All);
-                        /*GameObject deadPlayer = FindDeadPlayer();
-                        if(deadPlayer){
-                            deadPlayer.GetComponent<PhotonView>().RPC("Revive", RpcTarget.All);
-                        }*/
+                        if (inventory.HasReviveBadge)
+                        {
+                            inventory.HasReviveBadge = false;
+                            otherPlayer.GetComponent<HealthState>().Revive();
+                        }
                     }
                 }
             }
-        }
-    }
 
-    public GameObject FindDeadPlayer(){
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        for(int i = 0; i < players.Length; i++){
-            if(!players[i].activeSelf){
-                return players[i];
+            if (Physics.Raycast(camera.position,
+            camera.TransformDirection(Vector3.forward),
+            out pickup,
+            pickUpDistence,
+            fireLayer))
+            {
+                if(Input.GetKey(KeyCode.C)){
+                    inventory.cook();
+                }
+            }
+            if (Input.GetKey(KeyCode.X))
+            {
+                if(inventory.CookedAlienMeat > 0){
+                inventory.eat();
+                healthState.AddHealth(1);
+            }
             }
         }
-        return null;
     }
 }

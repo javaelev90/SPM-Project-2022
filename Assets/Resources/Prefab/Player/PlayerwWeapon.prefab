@@ -528,10 +528,15 @@ MonoBehaviour:
   pickupLayer:
     serializedVersion: 2
     m_Bits: 131072
+  fireLayer:
+    serializedVersion: 2
+    m_Bits: 0
   spaceShipLayer:
     serializedVersion: 2
     m_Bits: 128
   inventory: {fileID: 8119072296369205571}
+  healthState: {fileID: 0}
+  handler: {fileID: 0}
 --- !u!1 &8936168961814027537
 GameObject:
   m_ObjectHideFlags: 0
