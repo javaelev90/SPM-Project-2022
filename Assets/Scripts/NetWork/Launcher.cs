@@ -16,6 +16,8 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.GameVersion = "0.1";
         PhotonNetwork.ConnectUsingSettings();
+        PhotonNetwork.SendRate = 30;
+        PhotonNetwork.SerializationRate = 8;
     }
 
     public override void OnConnectedToMaster()

@@ -8,6 +8,7 @@ TagManager:
   - Ship
   - HealthHandler
   - InventoryHandler
+  - Enemy
   layers:
   - Default
   - TransparentFX

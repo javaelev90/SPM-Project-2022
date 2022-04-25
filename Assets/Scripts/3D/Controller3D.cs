@@ -204,7 +204,7 @@ public class Controller3D : MonoBehaviourPunCallbacks
             {
                 newPos = cameraOffsetTPS;
             }
-            smoothedPos = Vector3.Lerp(smoothedPos, newPos, Time.deltaTime * (hit.collider ? smoothFactorQuick : smoothFactorSlow));
+            smoothedPos = Vector3.Lerp(smoothedPos, newPos, Time.fixedDeltaTime * (hit.collider ? smoothFactorQuick : smoothFactorSlow));
             mainCam.transform.position = topPos + mainCam.transform.rotation * smoothedPos;
         }
     }
@@ -236,4 +236,21 @@ public class Controller3D : MonoBehaviourPunCallbacks
         if (mainCam)
             Gizmos.DrawWireSphere(mainCam.transform.position, radius);
     }
+
+    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    //{
+    //    if (stream.IsWriting)
+    //    {
+    //        stream.SendNext(transform.position);
+    //        stream.SendNext(transform.rotation);
+    //    }
+    //    else
+    //    {
+    //        transform.position = (Vector3)stream.ReceiveNext();
+    //        transform.rotation = (Quaternion)stream.ReceiveNext();
+
+    //        //float lag = Mathf.Abs((float)(PhotonNetwork.Time - info.SentServerTime));
+    //        //networkPosition += (this.m_Body.velocity * lag);
+    //    }
+    //}
 }

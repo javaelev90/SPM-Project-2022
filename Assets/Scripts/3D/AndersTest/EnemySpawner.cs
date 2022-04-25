@@ -21,21 +21,25 @@ public class EnemySpawner : MonoBehaviourPunCallbacks
     string path = "Prefab/";
     private void Update()
     {
-        if (spawnWithNightCycle)
+        //if (spawnWithNightCycle)
+        //{
+        //    if (PhotonNetwork.IsMasterClient && dayNightCyclePassed && lightManager.isNight)
+        //    {
+        //        dayNightCyclePassed = false;
+        //        StartSpawningEnemies();
+        //    }
+        //    if (!lightManager.isNight)
+        //    {
+        //        dayNightCyclePassed = true;
+        //    }
+        //} 
+        //else if(PhotonNetwork.IsMasterClient && !hasSpawned)
+        //{
+        //    hasSpawned = true;
+        //    StartSpawningEnemies();
+        //}
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            if (PhotonNetwork.IsMasterClient && dayNightCyclePassed && lightManager.isNight)
-            {
-                dayNightCyclePassed = false;
-                StartSpawningEnemies();
-            }
-            if (!lightManager.isNight)
-            {
-                dayNightCyclePassed = true;
-            }
-        } 
-        else if(PhotonNetwork.IsMasterClient && !hasSpawned)
-        {
-            hasSpawned = true;
             StartSpawningEnemies();
         }
        

@@ -23,6 +23,8 @@ public class PhysicsBody : MonoBehaviourPunCallbacks
     [SerializeField] private float kineticFrictionCoefficient = 1f;
     [SerializeField] private LayerMask obstacleLayer;
 
+    [SerializeField] private Transform playerVisuals;
+
     private CapsuleCollider capsuleCollider;
     private RaycastHit groundHit;
     private Vector3 velocity;
@@ -46,7 +48,12 @@ public class PhysicsBody : MonoBehaviourPunCallbacks
         isMine = photonView.IsMine;
     }
 
-    private void Update()
+    //private void Update()
+    //{
+    //    playerVisuals.position = Vector3.Lerp(playerVisuals.position, transform.position, Time.deltaTime / Time.fixedDeltaTime);
+    //}
+
+    private void FixedUpdate()
     {
         if (isMine)
         {
@@ -55,7 +62,7 @@ public class PhysicsBody : MonoBehaviourPunCallbacks
             ApplyAirResistance();
             UpdateVelocity();
 
-            transform.position += velocity * Time.deltaTime;
+            transform.position += velocity * Time.fixedDeltaTime;
         }
     }
 
@@ -71,10 +78,10 @@ public class PhysicsBody : MonoBehaviourPunCallbacks
         }
 
 
-        if (Physics.CapsuleCast(upperPoint, lowerPoint, capsuleCollider.radius, velocity.normalized, out RaycastHit hit, velocity.magnitude * Time.deltaTime + skinWidth, obstacleLayer))
+        if (Physics.CapsuleCast(upperPoint, lowerPoint, capsuleCollider.radius, velocity.normalized, out RaycastHit hit, velocity.magnitude * Time.fixedDeltaTime + skinWidth, obstacleLayer))
         {
 
-            Physics.CapsuleCast(upperPoint, lowerPoint, capsuleCollider.radius, -hit.normal, out RaycastHit normalHit, velocity.magnitude * Time.deltaTime + skinWidth, obstacleLayer);
+            Physics.CapsuleCast(upperPoint, lowerPoint, capsuleCollider.radius, -hit.normal, out RaycastHit normalHit, velocity.magnitude * Time.fixedDeltaTime + skinWidth, obstacleLayer);
 
             if (obstacle != null)
             {
@@ -118,7 +125,7 @@ public class PhysicsBody : MonoBehaviourPunCallbacks
 
     private void ApplyGravity()
     {
-        gravitationForce = Vector3.down * gravity * Time.deltaTime;
+        gravitationForce = Vector3.down * gravity * Time.fixedDeltaTime;
         velocity += gravitationForce;
     }
 
@@ -136,7 +143,7 @@ public class PhysicsBody : MonoBehaviourPunCallbacks
 
     private void ApplyAirResistance()
     {
-        velocity *= Mathf.Pow(airResistance, Time.deltaTime);
+        velocity *= Mathf.Pow(airResistance, Time.fixedDeltaTime);
     }
 
     private RaycastHit IsGrounded()
@@ -147,7 +154,7 @@ public class PhysicsBody : MonoBehaviourPunCallbacks
 
     public void Accelerate(Vector3 input, float maxSpeed)
     {
-        velocity += input * accelerationFactor * Time.deltaTime;
+        velocity += input * accelerationFactor * Time.fixedDeltaTime;
         if (velocity.magnitude > maxSpeed)
         {
             velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
@@ -157,7 +164,7 @@ public class PhysicsBody : MonoBehaviourPunCallbacks
     public void Decelerate()
     {
         Vector3 projection = new Vector3(velocity.x, 0.0f, velocity.z).normalized;
-        Vector3 deceleration = projection * decelerationFactor * Time.deltaTime;
+        Vector3 deceleration = projection * decelerationFactor * Time.fixedDeltaTime;
 
         if (!(deceleration.magnitude > Mathf.Abs(projection.magnitude)))
         {

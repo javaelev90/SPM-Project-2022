@@ -19,7 +19,7 @@ public class HealthState : MonoBehaviourPunCallbacks
         Health = initialHealth;
         isMine = photonView.IsMine;
         startPosition = transform.position;
-        GameObject.FindGameObjectWithTag("HealthHandler").GetComponent<HealthHandler>().hs = this;
+        //GameObject.FindGameObjectWithTag("HealthHandler").GetComponent<HealthHandler>().hs = this;
     }
 
     [PunRPC]
@@ -49,7 +49,7 @@ public class HealthState : MonoBehaviourPunCallbacks
     [PunRPC]
     public void KillObject()
     {
-        if (PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.IsMasterClient && tag == "Player")
         {
             PhotonNetwork.InstantiateRoomObject("Prefab/ReviveBadge", transform.position, Quaternion.identity, 0, new object[] { GetComponent<PhotonView>().ViewID });
             //badge.GetComponent<Pickup>().setPlayerToRevive(gameObject);

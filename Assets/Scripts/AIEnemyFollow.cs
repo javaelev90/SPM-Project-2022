@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Photon.Pun;
+using Photon.Realtime;
 
-
-public class AIEnemyFollow : MonoBehaviourPunCallbacks
+public class AIEnemyFollow : MonoBehaviour
 {
     // public NavMeshAgent enemyNav;
     // public Transform player;
+
+    [SerializeField] Transform interpolationTarget;
 
     [SerializeField] float movementSpeed;
     [SerializeField] float stopDist; // Distance from player where it stops
@@ -18,7 +20,7 @@ public class AIEnemyFollow : MonoBehaviourPunCallbacks
     [SerializeField] bool targetShip;
     private GameObject targetPlayer;
     private GameObject shipTarget;
-    private HealthState healthState;
+    [SerializeField] private HealthState healthState;
     //public void OnPhotonInstantiate(PhotonMessageInfo info)
     //{
     //    Debug.Log("initialized");
@@ -27,12 +29,14 @@ public class AIEnemyFollow : MonoBehaviourPunCallbacks
     //}
 
     // Start is called before the first frame update
+    GameObject[] targets;
     void Start()
     {
         StartCoroutine(Wait(5));
         //Wait(5);
         shipTarget = GameObject.FindGameObjectWithTag("Ship");
-        healthState = GetComponent<HealthState>();
+        //healthState = GetComponent<HealthState>();
+        targets = GameObject.FindGameObjectsWithTag("Player");
     }
 
     // Wait for player to spawn
@@ -45,9 +49,16 @@ public class AIEnemyFollow : MonoBehaviourPunCallbacks
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        transform.position = Vector3.Lerp(transform.position, interpolationTarget.position, Time.deltaTime / Time.fixedDeltaTime);
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        //while (LoadBalancingPeer.DispatchIncomingCommands()) ; //Dispatch until everything is Dispatched...
+        //LoadBalancingPeer.SendOutgoingCommands(); //Send a UDP/TCP package with outgoing messages
         if (targetShip)
         {
             MoveToShip();
@@ -64,7 +75,7 @@ public class AIEnemyFollow : MonoBehaviourPunCallbacks
 
     private void MoveToShip()
     {
-        transform.position = Vector3.MoveTowards(transform.position, shipTarget.transform.position, movementSpeed * Time.deltaTime);
+        interpolationTarget.position = Vector3.MoveTowards(transform.position, shipTarget.transform.position, movementSpeed * Time.deltaTime);
     }
 
     private void FollowPlayer()
@@ -72,7 +83,7 @@ public class AIEnemyFollow : MonoBehaviourPunCallbacks
         if (targetPlayer != null)
         {
             // Find all the Players 
-            GameObject[] targets = GameObject.FindGameObjectsWithTag("Player");
+           
             foreach (GameObject t in targets)
             {
                 // Find the one that is closest and make it the target
@@ -88,26 +99,29 @@ public class AIEnemyFollow : MonoBehaviourPunCallbacks
                 if (Vector3.Distance(transform.position, targetPlayer.transform.position) > stopDist)
                 {
                     // move twoards player
-                    transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, movementSpeed * Time.deltaTime);
+                    interpolationTarget.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, movementSpeed * Time.deltaTime);
                 }
                 // Is enemy near enogh to stop moving twoards player
                 else if (Vector3.Distance(transform.position, targetPlayer.transform.position) < stopDist && Vector3.Distance(transform.position, targetPlayer.transform.position) > retreatDist)
                 {
                     // Stop moving
-                    transform.position = this.transform.position;
+                    interpolationTarget.position = this.transform.position;
                 }
                 // If the enemy is to close
                 else if (Vector3.Distance(transform.position, targetPlayer.transform.position) < retreatDist)
                 {
                     // Back away
-                    transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, -movementSpeed * Time.deltaTime);
+                    interpolationTarget.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, -movementSpeed * Time.deltaTime);
 
                 }
             }
-
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(interpolationTarget.position, 0.5f);
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<Projectile>())
@@ -115,10 +129,10 @@ public class AIEnemyFollow : MonoBehaviourPunCallbacks
             //photonView.RPC("RemoveHealth", RpcTarget.All, 1);
             //other.gameObject.GetComponent<PhotonView>().RPC("DestoryProjectile", RpcTarget.All);
             //PhotonNetwork.Destroy(gameObject);
-            photonView.RPC("RemoveHealth", RpcTarget.All, 1);
+            //photonView.RPC("RemoveHealth", RpcTarget.All, 1);
             //photonView.RPC("UpdateHealthBar", RpcTarget.All);
 
-            other.gameObject.GetComponent<PhotonView>().RPC("DestoryProjectile", RpcTarget.All);
+            //other.gameObject.GetComponent<PhotonView>().RPC("DestoryProjectile", RpcTarget.All);
         }
     }
 
@@ -142,4 +156,21 @@ public class AIEnemyFollow : MonoBehaviourPunCallbacks
         //    //PhotonNetwork.Destroy(gameObject);
         //}
     }
+
+    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    //{
+    //    if (stream.IsWriting)
+    //    {
+    //        stream.SendNext(transform.position);
+    //        stream.SendNext(transform.rotation);
+    //    }
+    //    else
+    //    {
+    //        transform.position = (Vector3)stream.ReceiveNext();
+    //        transform.rotation = (Quaternion)stream.ReceiveNext();
+
+    //        //float lag = Mathf.Abs((float)(PhotonNetwork.Time - info.SentServerTime));
+    //        //networkPosition += (this.m_Body.velocity * lag);
+    //    }
+    //}
 }
